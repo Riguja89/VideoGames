@@ -46,7 +46,7 @@ router.get('/',async (req, res, next)=>{
             })
 
             ]});
-            console.log( VideoGameFiltered);
+           // console.log( VideoGameFiltered);
             res.json(VideoGameFiltered)
         });
     
