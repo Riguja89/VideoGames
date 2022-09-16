@@ -5,19 +5,43 @@ import GameCard from '../GameCard/GameCard.jsx';
 //import { Link } from 'react-router-dom';
 
 const Home=(props)=>{
-    //const [videogames, setVideogames]=useState()
-
+    const PERPAGE=15;
+    const [currentPage, setCurrentPage]=useState(1);
+    const [items, setItems]=useState([...props.videogames].splice(0,PERPAGE));
+  
     useEffect(() => {
-        props.getAllVideoGames();
+        props.getAllVideoGames();       
       },[]);
-     // console.log(props.videogames);
+     
+      useEffect(() => {
+        setItems([...props.videogames].splice(0,PERPAGE));
+      },[props.videogames])
+
+    const nextHandler=()=>{
+        const nextPage=currentPage+1;
+        if(props.videogames.length<currentPage*PERPAGE) return;
+        setItems([...props.videogames].splice((nextPage-1)*PERPAGE,PERPAGE));
+        setCurrentPage(nextPage);
+
+     }
+
+     const prevHandler=()=>{
+        const prevPage=currentPage-1;
+        if(prevPage<1) return;
+        setItems([...props.videogames].splice((prevPage-1)*PERPAGE,PERPAGE));
+        setCurrentPage(prevPage);
+
+     }
 
     return(
         <div>
+            <button onClick={prevHandler}>Prev</button>
+            <label>{currentPage}</label>
+            <button onClick={nextHandler}>Next</button>
             <h1>
                 This is the Home Page!!!
             </h1>
-            <ul>{props.videogames.map(game=>{
+            <ul>{items!==undefined ? items.map(game=>{
                 return(
                 <GameCard key={game.id}
                 image={game.image}
@@ -25,8 +49,8 @@ const Home=(props)=>{
                 name={game.name}>
                 </GameCard>
                 )
-            })}
-            <h1>hola</h1>
+            }): <>LOADING...</>}
+           
             </ul>
 
         </div>
@@ -34,8 +58,10 @@ const Home=(props)=>{
 };
 
 function mapStateToProps(state){
+    
     return{
       videogames: state.videogames,
+      
     };
     
   };

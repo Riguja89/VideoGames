@@ -1,5 +1,6 @@
 const initialState = {
     videogames: [],
+    items:[],
     videogame: {},
   };
   

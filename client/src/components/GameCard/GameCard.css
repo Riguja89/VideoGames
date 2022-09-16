@@ -1,0 +1,13 @@
+.GameCard {
+  
+    display: flex;
+  }
+  img{
+    height:200px;
+    width:300px;
+  }
+  
+  /* .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  } */
