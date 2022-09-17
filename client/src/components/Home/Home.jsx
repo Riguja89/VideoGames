@@ -15,6 +15,7 @@ const Home=(props)=>{
      
       useEffect(() => {
         setItems([...props.videogames].splice(0,PERPAGE));
+        setCurrentPage(1);
       },[props.videogames]);
 
     const nextHandler=()=>{

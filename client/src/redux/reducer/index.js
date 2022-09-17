@@ -1,6 +1,6 @@
 const initialState = {
     videogames: [],
-    items:[],
+    genres:[],
     videogame: {},
   };
   
@@ -27,6 +27,14 @@ const initialState = {
     
             }; 
     
+            case "GET_GENRES":
+              //console.log(action.payload);
+              return{
+                  ...state,
+                  genres: action.payload
+      
+              };
+
         //   case 'GET_HOUSE':
         //     return{
         //         ...state,

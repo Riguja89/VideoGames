@@ -4,6 +4,7 @@ export const GET_ALL_VIDEOGAMES = "GET_ALL_VIDEOGAMES";
 export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
 export const GET_VIDEOGAME = "GET_VIDEOGAME";
 export const SEARCH_GAMES="SEARCH_GAMES";
+export const GET_GENRES="GET_GENRES";
 //export const DELETE_HOUSE = "DELETE_HOUSE";
 
 
@@ -50,6 +51,22 @@ export const searchGames = (name) => dispatch => {
       
 
 };
+
+
+export const getGenres = () => dispatch => {
+  //console.log("va a hacer la peticion")
+  
+      return axios("http://localhost:3001/api/genres")
+
+      .then(r => r.data)
+      .then(d => dispatch({ type:GET_GENRES, payload: d }) )
+      .catch((error) => {
+        console.log(error);
+      });
+      
+
+};
+
 // Usar ruta 'http://localhost:3001/houses/:id' para buscar una house por el id pasado
 // como parámetro de la action creator.
 // Donde :id, el id recibido como argumento de la action creator.
