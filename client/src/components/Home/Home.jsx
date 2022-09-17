@@ -15,7 +15,7 @@ const Home=(props)=>{
      
       useEffect(() => {
         setItems([...props.videogames].splice(0,PERPAGE));
-      },[props.videogames])
+      },[props.videogames]);
 
     const nextHandler=()=>{
         const nextPage=currentPage+1;
@@ -57,11 +57,9 @@ const Home=(props)=>{
     );
 };
 
-function mapStateToProps(state){
-    
+function mapStateToProps(state){ 
     return{
       videogames: state.videogames,
-      
     };
     
   };

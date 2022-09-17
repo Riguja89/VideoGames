@@ -18,6 +18,14 @@ const initialState = {
               videogames: action.payload
   
           };
+
+          case "SEARCH_GAMES":
+            //console.log(action.payload);
+            return{
+                ...state,
+                videogames: action.payload
+    
+            }; 
     
         //   case 'GET_HOUSE':
         //     return{
