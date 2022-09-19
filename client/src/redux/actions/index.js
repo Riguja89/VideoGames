@@ -5,6 +5,8 @@ export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
 export const GET_VIDEOGAME = "GET_VIDEOGAME";
 export const SEARCH_GAMES="SEARCH_GAMES";
 export const GET_GENRES="GET_GENRES";
+export const GET_PLATFORMS="GET_PLATFORMS";
+export const POST_VIDEOGAME="POST_VIDEOGAME";
 //export const DELETE_HOUSE = "DELETE_HOUSE";
 
 
@@ -60,6 +62,35 @@ export const getGenres = () => dispatch => {
 
       .then(r => r.data)
       .then(d => dispatch({ type:GET_GENRES, payload: d }) )
+      .catch((error) => {
+        console.log(error);
+      });
+      
+
+};
+
+
+export const getPlatforms = () => dispatch => {
+  //console.log("va a hacer la peticion")
+  
+      return axios("http://localhost:3001/api/platforms")
+
+      .then(r => r.data)
+      .then(d => dispatch({ type:GET_PLATFORMS, payload: d }) )
+      .catch((error) => {
+        console.log(error);
+      });
+      
+
+};
+
+export const postVideogame = (videogame) => dispatch => {
+  //console.log("va a hacer la peticion")
+  
+      return axios.post("http://localhost:3001/api/videogames",videogame)
+
+      .then(r => r.data)
+      .then(d => dispatch({ type:POST_VIDEOGAME, payload: d }) )
       .catch((error) => {
         console.log(error);
       });

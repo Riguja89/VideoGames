@@ -22,4 +22,13 @@ router.post('/',async (req, res, next)=>{
 
 })
 
+router.get('/',async(req, res, next)=>{
+    try {
+        res.json(await Platform.findAll())
+    } catch (error) {
+        next(error)
+    }
+    
+})
+
 module.exports = router;

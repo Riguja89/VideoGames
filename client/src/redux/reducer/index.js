@@ -1,6 +1,7 @@
 const initialState = {
     videogames: [],
     genres:[],
+    platforms:[],
     videogame: {},
   };
   
@@ -35,11 +36,19 @@ const initialState = {
       
               };
 
-        //   case 'GET_HOUSE':
-        //     return{
-        //         ...state,
-        //         house: action.payload
-        //     };
+              case "GET_PLATFORMS":
+                //console.log(action.payload);
+                return{
+                    ...state,
+                    platforms: action.payload
+        
+                };
+
+          case 'POST_VIDEOGAME':
+            return{
+                ...state,
+                videogames: state.videogames.concat(action.payload)
+            };
     
         //     case 'CREATE_HOUSE':
         //       return{

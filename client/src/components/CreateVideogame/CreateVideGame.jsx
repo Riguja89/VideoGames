@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';  
-import { getGenres } from '../../redux/actions';
+import { getGenres,getPlatforms,postVideogame} from '../../redux/actions';
 import { connect } from 'react-redux';
 import GenreCard from './GenreCar';
 const CreateVideoGame = (props) => {
@@ -17,13 +17,16 @@ const CreateVideoGame = (props) => {
         platforms:[]
       });
 
-    const [arrayGenres, setArrayGenres]=useState([])  
+    const [arrayGenres, setArrayGenres]=useState([]);
+    const [arrayPlatforms, setArrayPlatforms]=useState([]);  
 
     const dispatch=useDispatch();  
 
       useEffect(()=>{
         dispatch(getGenres());
-        setArrayGenres([])
+        dispatch(getPlatforms());
+        setArrayGenres([]);
+        setArrayPlatforms([]);
       },[])
 
       function handleChange(e) {
@@ -36,19 +39,42 @@ const CreateVideoGame = (props) => {
         console.log(e.target,arrayGenres)
       }
     function handleGenre(e){
+      
+        if(arrayGenres.findIndex(ele=>ele===e.target.value)===-1){
         setArrayGenres([...arrayGenres,e.target.value]);
+        }
         console.log(arrayGenres);
+    }
+
+    function handlePlatform(e){
+      
+        if(arrayPlatforms.findIndex(ele=>ele===e.target.value)===-1){
+        setArrayPlatforms([...arrayPlatforms,e.target.value]);
+        }
+        console.log(arrayPlatforms);
     }
 
       function handleSubmit(e) {
         e.preventDefault();
+        formData.genres= arrayGenres;
+        formData.platforms=arrayPlatforms;
         console.log(formData);
-       //dispatch(createHouse(formData));
+       dispatch(postVideogame(formData));
        
       }
 
-      function deleteGenre(){
+      const deleteGenre=(id)=>{
+        let i=arrayGenres.indexOf(id);
+        arrayGenres.splice(i,1);
+        setArrayGenres([...arrayGenres]);
+        //console.log('delete ', i, id, arrayGenres)
+      }
 
+      const deletePlatform=(id)=>{
+        let i=arrayPlatforms.indexOf(id);
+        arrayPlatforms.splice(i,1);
+        setArrayPlatforms([...arrayPlatforms]);
+        //console.log('delete ', i, id, arrayGenres)
       }
 
     return (
@@ -66,23 +92,34 @@ const CreateVideoGame = (props) => {
                 <label>Rating: </label>
                 <input type="number" name="rating" value={formData.rating} onChange={handleChange}/>
                 <label>Genres: </label>
-                <select name="genres" onChange={handleGenre}> {props.genres!==undefined ?props.genres.map(genre=>{
-                    return(
+                <select defaultValue={""} name="genres" onChangeCapture={handleGenre}> {props.genres!==undefined ?props.genres.map(genre=>{
+                   
+                   return(
                         <option key={genre.id} value={genre.id}>{genre.name}</option>
                     )
                 }):<></>}
                 </select>
                 <ul>{arrayGenres.length>0? arrayGenres.map(g=>(
                 <GenreCard
-                 name={props.genres.find(({id})=>id==g).name} 
-                 key={g}>
+                 name={props.genres.find(({id})=>id===parseInt(g)).name} 
+                 key={g} deleteGenre={deleteGenre} id={g}>
                  </GenreCard>
                  )):<></>}</ul>
                 <label>Platforms: </label>
-                <select name="platforms" >
-                <option value="first">First Value</option>
-                <option value="second" selected>Second Value</option>
+                <select defaultValue={""} name="platforms" onChangeCapture={handlePlatform}> {props.platforms!==undefined ?props.platforms.map(plat=>{
+                   return(
+                        <option key={plat.id} value={plat.id}>{plat.name}</option>
+                    )
+                }):<></>}
                 </select>
+
+                <ul>{arrayPlatforms.length>0? arrayPlatforms.map(g=>(
+                <GenreCard
+                 name={props.platforms.find(({id})=>id===parseInt(g)).name} 
+                 key={g} deleteGenre={deletePlatform} id={g}>
+                 </GenreCard>
+                 )):<></>}</ul>
+
                 <button type="submit">Create</button>
              </form>
                 
@@ -92,6 +129,7 @@ const CreateVideoGame = (props) => {
 function mapStateToProps(state){ 
     return{
       genres: state.genres,
+      platforms: state.platforms
     };
     
   };

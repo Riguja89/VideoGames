@@ -1,11 +1,16 @@
 import React from 'react';
 //import './GameCard.css'
+
 const GenreCard = (props) => {
+
+    const deletegenre=()=>{
+        props.deleteGenre(props.id);
+    }
     
     return (
         <div className="GenreCard">
-            <label>Name: {props.name}</label>
-          <button >X</button>
+            <label>-{props.name}</label>
+          <label onClick={deletegenre}> X</label>
         </div>
     );
 };
