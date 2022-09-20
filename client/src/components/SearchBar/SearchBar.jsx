@@ -5,7 +5,6 @@ import { searchGames } from '../../redux/actions';
 const SearchBar = () => {
 
     const dispatch=useDispatch();
-    const buscar={};
     function handleSubmit(e) {
         e.preventDefault();
         dispatch(searchGames(document.getElementById("buscar").value));

@@ -6,6 +6,7 @@ import Home from './components/Home/Home';
 import NavBar from './components/NavBar/NavBar';
 import SearchBar from './components/SearchBar/SearchBar';
 import CreateVideoGame from './components/CreateVideogame/CreateVideGame';
+import GameDetail from './components/GameDetail/GameDetail';
 
 function App() {
   return (
@@ -14,10 +15,9 @@ function App() {
       <Route exact path="/" component={Landing} />
       <Route exact path="/home" component={SearchBar} />
       <Route exact path="/home" component={Home} />
+      <Route path="/videogame/:id" component={GameDetail} />
       <Route exact path="/videogame/create" component={CreateVideoGame} />
-      {/* <Route exact path="/house/create" component={CreateHouse} />
-      <Route exact path="/houses/:houseId" component={HouseDetail} /> */}
-      
+    
       </React.Fragment>
   );
 }

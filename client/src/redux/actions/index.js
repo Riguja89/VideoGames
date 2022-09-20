@@ -7,6 +7,7 @@ export const SEARCH_GAMES="SEARCH_GAMES";
 export const GET_GENRES="GET_GENRES";
 export const GET_PLATFORMS="GET_PLATFORMS";
 export const POST_VIDEOGAME="POST_VIDEOGAME";
+export const GET_VIDEOGAME_ID="GET_VIDEOGAME_ID";
 //export const DELETE_HOUSE = "DELETE_HOUSE";
 
 
@@ -98,42 +99,16 @@ export const postVideogame = (videogame) => dispatch => {
 
 };
 
-// Usar ruta 'http://localhost:3001/houses/:id' para buscar una house por el id pasado
-// como parámetro de la action creator.
-// Donde :id, el id recibido como argumento de la action creator.
-// Ojo, hacer un console.log de la respuesta desde el back. En nuestro reducer esperamos un objeto;
-// export const getHouse = () => dispatch => {};
+export const getVideoGameId = (id) => dispatch => {
+  //console.log("va a hacer la peticion")
+  
+      return axios(`http://localhost:3001/api/videogames/${id}`)
 
+      .then(r => r.data)
+      .then(d => dispatch({ type:GET_VIDEOGAME_ID, payload: d }) )
+      .catch((error) => {
+        console.log(error);
+      });
+      
 
-// export const getHouse = (id) => dispatch => {
-
-//     return fetch(`http://localhost:3001/houses/${id}`)
- 
-//     .then(r => r.json())
-//     .then(d => dispatch({ type:GET_HOUSE, payload: d }) )
-//     .catch((error) => {
-//       console.log(error);
-//     });
-    
-
-//    };
-
-
-// // Inicializamos id en 3, para que nuestros próximos ID's no se pisen con los existentes.
-// // La vas a usar en la funcion createHouse, descomentala cuando te haga falta;
-// let id = 3;
-
-// // Desde el componente ejecutamos la action creator, pasandole como argumento los values que vamos a utilizar para crear la house.
-// export const createHouse = (values)=>{
-//     id=id+1;
-//     values.id=id;
-//    //console.log(values.id);
-//    //console.log( { type:CREATE_PRODUCT, payload: values });
-//     return({ type:CREATE_HOUSE, payload: values })
-// };
-
-// // Desde el componente ejecutamos la action creator, pasandole como argumento el id de la house que queremos eliminar.
-// export const deleteHouse = (id)=>{
-//     //console.log('entra ak' + id);
-//     return({ type:DELETE_HOUSE, payload: id })
-// };
+};

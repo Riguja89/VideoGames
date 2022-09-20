@@ -49,17 +49,14 @@ const initialState = {
                 ...state,
                 videogames: state.videogames.concat(action.payload)
             };
-    
-        //     case 'CREATE_HOUSE':
-        //       return{
-        //           ...state,
-        //           houses: state.houses.concat(action.payload)
-        //       };
-        //       case 'DELETE_HOUSE':
-        //         return{
-        //             ...state,
-        //             houses: state.houses.filter(p=> p.id !==action.payload)
-        //         };
+
+            
+          case 'GET_VIDEOGAME_ID':
+             console.log(action.payload);
+            return{
+                ...state,
+                videogame: action.payload
+            };
     
           default: return {...state};
        

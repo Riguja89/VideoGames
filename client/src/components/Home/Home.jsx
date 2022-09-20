@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getAllVideoGames } from '../../redux/actions/index';
 import GameCard from '../GameCard/GameCard.jsx';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Home=(props)=>{
     const PERPAGE=15;
@@ -44,11 +44,13 @@ const Home=(props)=>{
             </h1>
             <ul>{items!==undefined ? items.map(game=>{
                 return(
+                 <Link key={game.id} to={`/videogame/${game.id}`}>
                 <GameCard key={game.id}
                 image={game.image}
                 id={game.id}
                 name={game.name}>
                 </GameCard>
+                </Link>
                 )
             }): <>LOADING...</>}
            
