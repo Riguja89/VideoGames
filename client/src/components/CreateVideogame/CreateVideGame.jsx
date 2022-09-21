@@ -23,11 +23,11 @@ const CreateVideoGame = (props) => {
     const dispatch=useDispatch();  
 
       useEffect(()=>{
-        dispatch(getGenres());
-        dispatch(getPlatforms());
+        if(props.genres.length===0) dispatch(getGenres());
+        if(props.platforms.length===0) dispatch(getPlatforms());
         setArrayGenres([]);
         setArrayPlatforms([]);
-      },[])
+      },[props.genres.length, props.platforms.length, dispatch])
 
       function handleChange(e) {
         //setName(e.target.value)
@@ -36,7 +36,7 @@ const CreateVideoGame = (props) => {
             [e.target.name]: e.target.value,
           });
 
-        console.log(e.target,arrayGenres)
+        //console.log(e.target,arrayGenres)
       }
     function handleGenre(e){
       

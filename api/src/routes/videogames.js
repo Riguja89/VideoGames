@@ -67,7 +67,7 @@ router.get('/:id',async(req, res, next)=>{
                 include:[Genre,Platform],
                 where:{id:id}
             })
-          game=game2[0]
+          game=game2[0];
 
         }else{
             game=await axios.get('https://api.rawg.io/api/games/'+id+'?key='+API_KEY);

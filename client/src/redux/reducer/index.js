@@ -2,6 +2,7 @@ const initialState = {
     videogames: [],
     genres:[],
     platforms:[],
+    gamestoShow:[],
     videogame: {},
   };
   
@@ -52,11 +53,18 @@ const initialState = {
 
             
           case 'GET_VIDEOGAME_ID':
-             console.log(action.payload);
+           
             return{
                 ...state,
                 videogame: action.payload
             };
+
+            case 'SET_GAMESTOSHOW':
+          
+             return{
+                 ...state,
+                 gamestoShow: action.payload
+             };
     
           default: return {...state};
        

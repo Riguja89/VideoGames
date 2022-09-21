@@ -15,8 +15,9 @@ function App() {
       <Route exact path="/" component={Landing} />
       <Route exact path="/home" component={SearchBar} />
       <Route exact path="/home" component={Home} />
-      <Route path="/videogame/:id" component={GameDetail} />
       <Route exact path="/videogame/create" component={CreateVideoGame} />
+      <Route exact path="/videogames/:id" component={GameDetail} />
+     
     
       </React.Fragment>
   );

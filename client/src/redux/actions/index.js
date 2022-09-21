@@ -8,6 +8,7 @@ export const GET_GENRES="GET_GENRES";
 export const GET_PLATFORMS="GET_PLATFORMS";
 export const POST_VIDEOGAME="POST_VIDEOGAME";
 export const GET_VIDEOGAME_ID="GET_VIDEOGAME_ID";
+export const SET_GAMESTOSHOW="SET_GAMESTOSHOW";
 //export const DELETE_HOUSE = "DELETE_HOUSE";
 
 
@@ -110,5 +111,12 @@ export const getVideoGameId = (id) => dispatch => {
         console.log(error);
       });
       
+
+};
+
+export const setGamestoShow = (toShow) => dispatch => {
+  //console.log("va a hacer la peticion")
+  
+      dispatch({type: SET_GAMESTOSHOW, payload:toShow})
 
 };

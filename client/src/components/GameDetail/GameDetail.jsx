@@ -5,13 +5,13 @@ import React from "react";
 
 class GameDetail extends React.Component {
 
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.props = {
-      videogame: undefined,
-    }
-  }
+  //   this.props = {
+  //     videogame: undefined,
+  //   }
+  // }
 
 
   componentDidMount() {
@@ -23,7 +23,6 @@ class GameDetail extends React.Component {
   render() {
     return (
       <div>
-        kajsdfpvjaop
         <PageHeader
           title={
             this.props.videogame === undefined

@@ -1,27 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getAllVideoGames } from '../../redux/actions/index';
+import { getAllVideoGames,setGamestoShow } from '../../redux/actions/index';
 import GameCard from '../GameCard/GameCard.jsx';
 import { Link } from 'react-router-dom';
+import FilterCont from '../Filter/Filter';
 
 const Home=(props)=>{
     const PERPAGE=15;
     const [currentPage, setCurrentPage]=useState(1);
-    const [items, setItems]=useState([...props.videogames].splice(0,PERPAGE));
+    const [items, setItems]=useState([...props.gamestoShow].splice(0,PERPAGE));
   
-    useEffect(() => {
-        props.getAllVideoGames();       
+      useEffect(() => {
+        props.getAllVideoGames();
       },[]);
+
+      useEffect(() => {
+      props.setGamestoShow(props.videogames)
+      
+      },[props.videogames]);
      
       useEffect(() => {
-        setItems([...props.videogames].splice(0,PERPAGE));
+        setItems([...props.gamestoShow].splice(0,PERPAGE));
         setCurrentPage(1);
-      },[props.videogames]);
+        
+      },[props.gamestoShow]);
 
     const nextHandler=()=>{
         const nextPage=currentPage+1;
-        if(props.videogames.length<currentPage*PERPAGE) return;
-        setItems([...props.videogames].splice((nextPage-1)*PERPAGE,PERPAGE));
+        if(props.gamestoShow.length<currentPage*PERPAGE) return;
+        setItems([...props.gamestoShow].splice((nextPage-1)*PERPAGE,PERPAGE));
         setCurrentPage(nextPage);
 
      }
@@ -29,13 +36,14 @@ const Home=(props)=>{
      const prevHandler=()=>{
         const prevPage=currentPage-1;
         if(prevPage<1) return;
-        setItems([...props.videogames].splice((prevPage-1)*PERPAGE,PERPAGE));
+        setItems([...props.gamestoShow].splice((prevPage-1)*PERPAGE,PERPAGE));
         setCurrentPage(prevPage);
 
      }
 
     return(
         <div>
+            <FilterCont />
             <button onClick={prevHandler}>Prev</button>
             <label>{currentPage}</label>
             <button onClick={nextHandler}>Next</button>
@@ -44,7 +52,7 @@ const Home=(props)=>{
             </h1>
             <ul>{items!==undefined ? items.map(game=>{
                 return(
-                 <Link key={game.id} to={`/videogame/${game.id}`}>
+                 <Link key={game.id} to={`/videogames/${game.id}`}>
                 <GameCard key={game.id}
                 image={game.image}
                 id={game.id}
@@ -63,6 +71,7 @@ const Home=(props)=>{
 function mapStateToProps(state){ 
     return{
       videogames: state.videogames,
+      gamestoShow:state.gamestoShow
     };
     
   };
@@ -70,6 +79,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return{
     getAllVideoGames: ()=>dispatch(getAllVideoGames()),
+   setGamestoShow: (games)=>dispatch(setGamestoShow(games)),
     };
 };
 
