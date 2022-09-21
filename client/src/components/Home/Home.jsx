@@ -4,6 +4,7 @@ import { getAllVideoGames,setGamestoShow } from '../../redux/actions/index';
 import GameCard from '../GameCard/GameCard.jsx';
 import { Link } from 'react-router-dom';
 import FilterCont from '../Filter/Filter';
+import OrderCont from '../Order/Order';
 
 const Home=(props)=>{
     const PERPAGE=15;
@@ -16,7 +17,7 @@ const Home=(props)=>{
 
       useEffect(() => {
       props.setGamestoShow(props.videogames)
-      
+
       },[props.videogames]);
      
       useEffect(() => {
@@ -44,6 +45,7 @@ const Home=(props)=>{
     return(
         <div>
             <FilterCont />
+            <OrderCont/>
             <button onClick={prevHandler}>Prev</button>
             <label>{currentPage}</label>
             <button onClick={nextHandler}>Next</button>
