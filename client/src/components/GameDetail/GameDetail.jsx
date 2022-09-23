@@ -5,19 +5,13 @@ import React from "react";
 
 class GameDetail extends React.Component {
 
-  // constructor(props) {
-  //   super(props);
-
-  //   this.props = {
-  //     videogame: undefined,
-  //   }
-  // }
-
-
   componentDidMount() {
     console.log(this.props)
     this.props.getVideoGameId(this.props.match.params.id)
     
+  }
+  componentWillUnmount(){
+    this.props.getVideoGameId()
   }
 
   render() {

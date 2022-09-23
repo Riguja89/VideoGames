@@ -4,6 +4,13 @@ const initialState = {
     platforms:[],
     gamestoShow:[],
     videogame: {},
+    stateSelectGenres: "All",
+    stateSelectDb: "All",
+    stateOrder: null,
+    currentPage: 1,
+    videogamesOrdered: [],
+    filteredbyGenre:[],
+    filteredbyDB:[],
   };
   
   const rootReducer = (state = initialState, action) => {
@@ -65,7 +72,52 @@ const initialState = {
                  ...state,
                  gamestoShow: action.payload
              };
-    
+
+             case 'SET_STATE_SELECT_GENRES':
+          
+              return{
+                  ...state,
+                  stateSelectGenres: action.payload
+              };
+
+              case 'SET_STATE_SELECT_DB':
+          
+                return{
+                    ...state,
+                    stateSelectDb: action.payload
+                };
+              case 'SET_STATE_ORDER':
+          
+                  return{
+                      ...state,
+                      stateOrder: action.payload
+                };
+
+              case 'SET_CURRENT_PAGE':
+          
+                  return{
+                      ...state,
+                      currentPage: action.payload
+              };    
+
+            case 'SET_FILTERD_BY_GENRE':
+          
+                  return{
+                      ...state,
+                      filteredbyGenre: action.payload
+                  };
+            case 'SET_FILTERD_BY_DB':
+          
+                    return{
+                        ...state,
+                        filteredbyDB: action.payload
+                  };
+            case 'SET_VIDEOGAMES_ORDERED':
+          
+                    return{
+                        ...state,
+                        videogamesOrdered: action.payload
+                  };                  
           default: return {...state};
        
     };

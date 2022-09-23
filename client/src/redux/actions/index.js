@@ -9,10 +9,13 @@ export const GET_PLATFORMS="GET_PLATFORMS";
 export const POST_VIDEOGAME="POST_VIDEOGAME";
 export const GET_VIDEOGAME_ID="GET_VIDEOGAME_ID";
 export const SET_GAMESTOSHOW="SET_GAMESTOSHOW";
-//export const DELETE_HOUSE = "DELETE_HOUSE";
-
-
-
+export const SET_STATE_SELECT_GENRES="SET_STATE_SELECT_GENRES";
+export const SET_STATE_SELECT_DB="SET_STATE_SELECT_DB";
+export const SET_FILTERD_BY_GENRE="SET_FILTERD_BY_GENRE";
+export const SET_FILTERD_BY_DB ="SET_FILTERD_BY_DB";
+export const SET_VIDEOGAMES_ORDERED="SET_VIDEOGAMES_ORDERED";
+export const SET_STATE_ORDER="SET_STATE_ORDER";
+export const SET_CURRENT_PAGE="SET_CURRENT_PAGE";
 // Fijarse que la sintaxis de nuestra Action creator es distinta a lo que venimos haciendo. Esto es
 // debido al uso del middleware "thunk", el cual nos permite trabajar con acciones asincrónicas.
 // Necesitamos hacer uso de este middleware ya que nuestras peticiones al back siempre son asincrónicas,
@@ -103,6 +106,7 @@ export const postVideogame = (videogame) => dispatch => {
 export const getVideoGameId = (id) => dispatch => {
   //console.log("va a hacer la peticion")
   
+  if(id){
       return axios(`http://localhost:3001/api/videogames/${id}`)
 
       .then(r => r.data)
@@ -110,7 +114,9 @@ export const getVideoGameId = (id) => dispatch => {
       .catch((error) => {
         console.log(error);
       });
-      
+    }else{
+      dispatch({ type:GET_VIDEOGAME_ID, payload: {} })
+    }
 
 };
 
@@ -118,5 +124,53 @@ export const setGamestoShow = (toShow) => dispatch => {
   //console.log("va a hacer la peticion")
   
       dispatch({type: SET_GAMESTOSHOW, payload:toShow})
+
+};
+
+export const setStateSelectGenres = (stateselec) => dispatch => {
+  //console.log("va a hacer la peticion")
+  
+      dispatch({type: SET_STATE_SELECT_GENRES, payload:stateselec})
+
+};
+export const setStateSelectdb = (stateselec) => dispatch => {
+  //console.log("va a hacer la peticion")
+  
+      dispatch({type: SET_STATE_SELECT_DB, payload:stateselec})
+
+};
+
+export const setCurrentPage = (page) => dispatch => {
+  //console.log("va a hacer la peticion")
+  
+      dispatch({type: SET_CURRENT_PAGE, payload:page})
+
+};
+
+export const setFilteredByGenre = (filtered) => dispatch => {
+  //console.log("va a hacer la peticion")
+  
+      dispatch({type: SET_FILTERD_BY_GENRE, payload:filtered})
+
+};
+
+export const setStateOrder = (stateorder) => dispatch => {
+  //console.log("va a hacer la peticion")
+  
+      dispatch({type: SET_STATE_ORDER, payload:stateorder})
+
+};
+
+export const setFilteredByDB = (filtered) => dispatch => {
+  //console.log("va a hacer la peticion")
+  
+      dispatch({type: SET_FILTERD_BY_DB, payload:filtered})
+
+};
+
+export const setVideogamesOrdered = (ordered) => dispatch => {
+  //console.log("va a hacer la peticion")
+  
+      dispatch({type: SET_VIDEOGAMES_ORDERED, payload:ordered})
 
 };

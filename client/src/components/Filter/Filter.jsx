@@ -1,60 +1,66 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { getGenres,setGamestoShow } from '../../redux/actions';
+import { getGenres,setGamestoShow,setStateSelectGenres,setStateSelectdb,
+    setFilteredByGenre, setFilteredByDB, setCurrentPage} from '../../redux/actions';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useState } from 'react';
+
 
 const FilterCont = (props) => {
 
     const dispatch=useDispatch();
-    const [filteredbyGenre, setfilteredbyGenre]=useState([]);
-    const [filteredbyDB, setfilteredbyDB]=useState([]);
+
 
 useEffect(()=>{
     if(props.genres.length===0) dispatch(getGenres()); //caga generos desde la db si no esta lleno 
-    setfilteredbyGenre(props.videogames);
-    setfilteredbyDB(props.videogames);
-},[props.videogames])
+    if(props.filteredbyGenre.length===0)dispatch(setFilteredByGenre(props.videogamesOrdered));
+    if(props.filteredbyDB.length===0)dispatch(setFilteredByDB(props.videogamesOrdered));
+    document.getElementById("genreselect").value=props.stateSelectGenres;
+    document.getElementById("whereselect").value=props.stateSelectDb;
+},[props.videogamesOrdered,props.videogames])
 
 function handleFilterGenre(e){
+
     let filtered=[]
+    dispatch(setStateSelectGenres(e.target.value));
+    dispatch(setCurrentPage(1));
     if (e.target.value!=="All" ){
 
-        filteredbyDB.forEach((game)=>{
+        props.filteredbyDB.forEach((game)=>{
             if(game.genres.filter((gen)=>(gen.id===parseInt(e.target.value))).length>0){
                filtered=[...filtered,game]
             }
                 })
         dispatch(setGamestoShow(filtered));
         filtered=[];
-        props.videogames.forEach((game)=>{
+        props.videogamesOrdered.forEach((game)=>{
             if(game.genres.filter((gen)=>(gen.id===parseInt(e.target.value))).length>0){
              filtered=[...filtered,game]
             }
                 })
-        setfilteredbyGenre(filtered);
+                dispatch(setFilteredByGenre(filtered));
     }else{
-        setfilteredbyGenre(props.videogames)
-        dispatch(setGamestoShow(filteredbyDB));
+        dispatch(setFilteredByGenre(props.videogamesOrdered));
+        dispatch(setGamestoShow(props.filteredbyDB));
     }
 }
 
 function handleFilterDB(e){
     let filtered=[]
-
+    dispatch(setStateSelectdb(e.target.value));
+    dispatch(setCurrentPage(1));
     switch(e.target.value){
         case "All":
-                filtered=filteredbyGenre;
-                setfilteredbyDB(props.videogames);
+                filtered=props.filteredbyGenre;
+                dispatch(setFilteredByDB(props.videogamesOrdered));
             break;
         case "db":
-                filtered= filteredbyGenre.filter(game=>(game.id.length>9));
-                setfilteredbyDB(props.videogames.filter(game=>(game.id.length>9)));
+                filtered= props.filteredbyGenre.filter(game=>(game.id.length>9));
+                dispatch(setFilteredByDB(props.videogamesOrdered.filter(game=>(game.id.length>9))));
             break;
         case "rawg":
-                filtered= filteredbyGenre.filter(game=>(typeof(game.id)!=="string"));
-                setfilteredbyDB(props.videogames.filter(game=>typeof(game.id)!=="string"));
+                filtered= props.filteredbyGenre.filter(game=>(typeof(game.id)!=="string"));
+               dispatch(setFilteredByDB(props.videogamesOrdered.filter(game=>typeof(game.id)!=="string")));
              break;    
 
         default:
@@ -91,6 +97,11 @@ function mapStateToProps(state){
       genres: state.genres,
       videogames:state.videogames,
       gamestoShow: state.gamestoShow,
+      stateSelectGenres: state.stateSelectGenres,
+      stateSelectDb: state.stateSelectDb,
+      filteredbyGenre: state.filteredbyGenre,
+      filteredbyDB: state.filteredbyDB,
+      videogamesOrdered:state.videogamesOrdered,
     };
     
   };
