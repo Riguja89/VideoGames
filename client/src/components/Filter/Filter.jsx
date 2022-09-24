@@ -74,17 +74,17 @@ function handleFilterDB(e){
     return (
         <div>
                 <label>Genres: </label>
-                <select id="genreselect" name="genres" onChangeCapture={handleFilterGenre}> {props.genres!==undefined ?props.genres.map(genre=>{
+                <select defaultValue="All" id="genreselect" name="genres" onChangeCapture={handleFilterGenre}> {props.genres!==undefined ?props.genres.map(genre=>{
                    
                    return(
                         <option key={genre.id} value={genre.id}>{genre.name}</option>
                     )
                 }):<></>}
-                <option value="All" selected>All</option>
-                </select>
+                <option value="All">All</option>
+                </select >
                 <label>Where: </label>
-                <select id="whereselect" name="where" onChangeCapture={handleFilterDB }> 
-                <option value="All" selected>All</option>
+                <select defaultValue="All"  id="whereselect" name="where" onChangeCapture={handleFilterDB }> 
+                <option value="All" >All</option>
                 <option value="db">My DB</option>
                 <option value="rawg">RAWG</option>
                 </select>      

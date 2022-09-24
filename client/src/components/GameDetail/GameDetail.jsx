@@ -6,7 +6,7 @@ import React from "react";
 class GameDetail extends React.Component {
 
   componentDidMount() {
-    console.log(this.props)
+   // console.log(this.props)
     this.props.getVideoGameId(this.props.match.params.id)
     
   }
@@ -19,19 +19,38 @@ class GameDetail extends React.Component {
       <div>
         <PageHeader
           title={
-            this.props.videogame === undefined
+            this.props.videogame.name === undefined 
               ? "Cargando..."
               : this.props.videogame === null
-              ? "Character no encontrado..."
+              ? "Video Game no encontrado..."
               : this.props.videogame.name
           }
           onBack={() => this.props.history.goBack()}
         />
         {this.props.videogame?.id && (
           <img src={this.props.videogame.image} alt="" />
-          
-        )}
-        {this.props.videogame.description}
+          )}
+        {this.props.videogame?.id && (
+                        <ul> Genres: {this.props.videogame.genres.map((genre)=>{return(
+                          <p key={genre.id}>{genre.name}, </p>
+                      )})} </ul>
+          )}
+         <div>{(this.props.videogame.description) }</div>
+         {this.props.videogame?.platforms && (
+                        <ul> Platforms: {this.props.videogame.platforms.map((platform)=>{return(
+                          <p key={platform.platform.id}>{platform.platform.name}, </p>
+                      )})} </ul>
+          )}
+          {this.props.videogame?.released && (
+                   <p>
+                    Released date: {this.props.videogame.released}
+                   </p>
+          )}
+                    {this.props.videogame?.rating && (
+                   <p>
+                    Rating: {this.props.videogame.rating}
+                   </p>
+          )}
       </div>
     );
   }

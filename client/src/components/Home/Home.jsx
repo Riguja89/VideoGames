@@ -53,7 +53,8 @@ const Home=(props)=>{
                 <GameCard key={game.id}
                 image={game.image}
                 id={game.id}
-                name={game.name}>
+                name={game.name}
+                genres={game.genres}>
                 </GameCard>
                 </Link>
                 )
