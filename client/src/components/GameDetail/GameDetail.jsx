@@ -38,7 +38,7 @@ class GameDetail extends React.Component {
          <div>{(this.props.videogame.description) }</div>
          {this.props.videogame?.platforms && (
                         <ul> Platforms: {this.props.videogame.platforms.map((platform)=>{return(
-                          <p key={platform.platform.id}>{platform.platform.name}, </p>
+                          <p key={platform.id}>{platform.name}, </p>
                       )})} </ul>
           )}
           {this.props.videogame?.released && (

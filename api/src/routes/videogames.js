@@ -79,7 +79,7 @@ router.get('/:id',async(req, res, next)=>{
                 description:game.description,
                 released: game.released,
                 rating: game.rating,
-                platforms: game.platforms,
+                platforms: game.platforms.map(p=>(p.platform)),
                 genres:game.genres
             }
         } 
