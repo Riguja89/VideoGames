@@ -1,0 +1,35 @@
+
+
+{"games":[
+    {
+        "id": 1,
+        "image":"https://apod.nasa.gov/apod/image/2202/AuroraPillars_Correia_960.jpg",
+        "name":"Juego 1",
+        "genres":[{
+            "id":1,
+            "name":"action"}]
+       
+},
+    {
+        "id": 2,
+        "image":"https://apod.nasa.gov/apod/image/2202/AuroraPillars_Correia_960.jpg",
+        "name":"Juego 2",
+        "genres":[{
+            "id":2,
+            "name":"shooter"}]
+    },
+    {
+        "id": 3,
+        "image":"https://apod.nasa.gov/apod/image/2202/AuroraPillars_Correia_960.jpg",
+        "name":"Juego 3",
+        "genres":[{
+            "id":3,
+            "name":"casual"},
+            {
+                "id":4,
+                "name":"simulation"}
+        ]
+    }
+]
+
+}

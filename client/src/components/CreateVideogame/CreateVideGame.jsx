@@ -60,13 +60,16 @@ const CreateVideoGame = (props) => {
             }else{setErrorDescription("")}
             break;
             case "released":
-              if(isNaN(Date.parse(e.target.value))){
+            if(isNaN(Date.parse(e.target.value))){
                 setErrorReleased("Se debe ingresar una fecha valida dd/mm/yyyy")
-              }else{setErrorReleased("")}
-              break;
-
-            default:
-              break;
+            }else{setErrorReleased("")}
+            break;
+            case "rating":
+            if(e.target.value>5 || e.target.value<0){
+              setErrorRating("El valor del rating debe estar en un rango de 0.0 a 5.0")
+            }else{setErrorRating("")}
+          
+            break;
           }
       }
     function handleGenre(e){
@@ -74,7 +77,7 @@ const CreateVideoGame = (props) => {
         if(arrayGenres.findIndex(ele=>ele===e.target.value)===-1){
         setArrayGenres([...arrayGenres,e.target.value]);
         }
-        console.log(arrayGenres);
+       setErrorGenres("")
     }
 
     function handlePlatform(e){
@@ -82,7 +85,7 @@ const CreateVideoGame = (props) => {
         if(arrayPlatforms.findIndex(ele=>ele===e.target.value)===-1){
         setArrayPlatforms([...arrayPlatforms,e.target.value]);
         }
-        console.log(arrayPlatforms);
+        setErrorPlatforms("")
     }
 
       function handleSubmit(e) {
@@ -98,6 +101,9 @@ const CreateVideoGame = (props) => {
         let i=arrayGenres.indexOf(id);
         arrayGenres.splice(i,1);
         setArrayGenres([...arrayGenres]);
+        if(arrayGenres.length===0){
+          setErrorGenres("Debe por lo menos seleccionar un genero para el juego")
+        }else{setErrorGenres("")}
         //console.log('delete ', i, id, arrayGenres)
       }
 
@@ -105,7 +111,9 @@ const CreateVideoGame = (props) => {
         let i=arrayPlatforms.indexOf(id);
         arrayPlatforms.splice(i,1);
         setArrayPlatforms([...arrayPlatforms]);
-        //console.log('delete ', i, id, arrayGenres)
+        if(arrayPlatforms.length===0){
+          setErrorPlatforms("Debe por lo menos seleccionar una Plataforma para el juego")
+        }else{setErrorPlatforms("")}
       }
 
     return (
@@ -125,8 +133,8 @@ const CreateVideoGame = (props) => {
                 <input type="date" name="released" value={formData.released} onChange={handleChange}/>
                 {!errorReleased ? null : <span>{errorReleased}</span>}
                 <label>Rating: </label>
-                <input type="number" name="rating" value={formData.rating} onChange={handleChange}/>
-                {!errorDescription ? null : <span>{errorDescription}</span>}
+                <input type="number" name="rating" min="0.0" max="5.0" step="0.1" value={formData.rating} onChange={handleChange}/>
+                {!errorRating ? null : <span>{errorRating}</span>}
                 <label>Genres: </label>
                 <select defaultValue={""} name="genres" onChangeCapture={handleGenre}> {props.genres!==undefined ?props.genres.map(genre=>{  
                    return(
@@ -140,7 +148,7 @@ const CreateVideoGame = (props) => {
                  key={g} deleteGenre={deleteGenre} id={g}>
                  </GenreCard>
                  )):<></>}</ul>
-                 {!errorDescription ? null : <span>{errorDescription}</span>}
+                 {!errorGenres ? null : <span>{errorGenres}</span>}
                 <label>Platforms: </label>
                 <select defaultValue={""} name="platforms" onChangeCapture={handlePlatform}> {props.platforms!==undefined ?props.platforms.map(plat=>{
                    return(
@@ -155,7 +163,7 @@ const CreateVideoGame = (props) => {
                  key={g} deleteGenre={deletePlatform} id={g}>
                  </GenreCard>
                  )):<></>}</ul>
-                {!errorDescription ? null : <span>{errorDescription}</span>}
+                {!errorPlatforms ? null : <span>{errorPlatforms}</span>}
                 <button type="submit">Create</button>
              </form>
                 

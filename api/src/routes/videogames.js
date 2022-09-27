@@ -10,6 +10,7 @@ router.get('/',async (req, res, next)=>{
     let videogamesDb=[]
     let videogamesApi=[];
     try {
+       
         if(name){
             videogamesApi[0]=await axios.get('https://api.rawg.io/api/games?key='+API_KEY+'&search='+name);
             videogamesDb= await Videogame.findAll({
