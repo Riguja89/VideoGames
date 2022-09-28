@@ -11,12 +11,13 @@ import FilterCont from './components/Filter/Filter';
 
 function App() {
   return (
-      <React.Fragment>
-      <NavBar/>
+      <React.Fragment>         
       <Route exact path="/" component={Landing} />
-      <Route exact path="/home" component={SearchBar} />
-      <Route exact path="/home" component={FilterCont} />
+      <Route exact path="/home" component={NavBar} />
+      {/* <Route exact path="/home" component={SearchBar} /> */}
+      {/* <Route exact path="/home" component={FilterCont} /> */}
       <Route exact path="/home" component={Home} />
+      <Route exact path="/videogame/create" component={NavBar} />
       <Route exact path="/videogame/create" component={CreateVideoGame} />
       <Route exact path="/videogames/:id" component={GameDetail} />
      

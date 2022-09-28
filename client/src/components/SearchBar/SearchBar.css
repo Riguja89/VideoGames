@@ -1,0 +1,22 @@
+.searchbar{
+    /* font-family: 'Roboto Flex', sans-serif; */
+    margin: 0 0 0 auto;   
+    margin-right: 20px;
+    margin-top: 12px;
+    float: right;
+    
+}
+.inputsearch{
+    border-radius: 4px;
+}
+.bottonsearch{
+    border-radius: 4px;
+    background-color: #02080f;
+    color: white;
+    border: white;
+    height: 22px;
+}
+
+.bottonsearch:hover{
+    background-color: #52591f;
+}

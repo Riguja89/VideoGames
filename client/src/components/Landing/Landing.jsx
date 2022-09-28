@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Landing.css'
 
 const Landing=()=>{
     return(
-        <div>
+        <div className='Landing'>
             <h1>
-                Ahora si, esto apenas empieza
+                {/* ¡HELLO! */}
                 <br />
-                This is the Landing Page
+                {/* GET READY? */}
             </h1>
             <Link to="/home">
-            <button >
-                Iniciar 
+            <button className='start'>
+                Get Started
             </button>
             </Link>
         </div>

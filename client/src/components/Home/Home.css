@@ -1,0 +1,33 @@
+.filtersorderscontainer{
+    float: left;
+    height:100vw;
+    padding: 10px;
+}
+
+.divgames{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+a {
+    text-decoration: none;
+}
+.paginatedcontainer{
+    justify-content: right;
+    margin-top: 15px;
+    text-align: right;
+    margin-right: 25px;
+}
+
+.pagbutton{
+    border-radius: 4px;
+    background-color: #522e75;
+    color: white;
+    border: white;
+    height: 22px;
+}
+
+.pagbutton:hover{
+    background-color: #52591f;
+}

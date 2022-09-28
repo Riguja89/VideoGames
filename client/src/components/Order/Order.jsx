@@ -4,6 +4,7 @@ import { setGamestoShow,setVideogamesOrdered, setStateOrder,
     setFilteredByGenre, setFilteredByDB } from '../../redux/actions';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
+import './Order.css'
 
 const OrderCont = (props) => {
 
@@ -83,22 +84,24 @@ const OrderCont = (props) => {
     }
 
     return(
-<div>
-<fieldset id="orderelement">
-<legend > Selecciona un Orden</legend>
-<label >
-    <input id="az" onClick={handleOrder} type="radio" name="order" value="az"/> A...Z
-</label>
-<label >
-    <input id="za" onClick={handleOrder} type="radio" name="order" value="za"/> Z...A
-</label>
-<label >
-    <input id="ratinga" onClick={handleOrder} type="radio" name="order" value="ratinga"/> Rating ↑
-</label>
-<label >
-    <input id="ratingd" onClick={handleOrder} type="radio" name="order" value="ratingd"/> Rating  ↓
-</label>
-</fieldset>
+<div className='divorder'>
+
+Order By: <br />
+<ul className='ulorder'> 
+<li >
+    <input id="az" onClick={handleOrder} type="radio" name="order" value="az"/> A...Z <br />
+</li>
+<li >
+    <input id="za" onClick={handleOrder} type="radio" name="order" value="za"/> Z...A<br />
+</li>
+<li >
+    <input id="ratinga" onClick={handleOrder} type="radio" name="order" value="ratinga"/> Rating ↓<br />
+</li>
+<li >
+    <input id="ratingd" onClick={handleOrder} type="radio" name="order" value="ratingd"/> Rating ↑<br />
+</li>
+</ul>
+
 </div>
     );
 

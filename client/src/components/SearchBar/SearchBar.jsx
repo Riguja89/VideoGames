@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { searchGames,setGamestoShow,setCurrentPage,setStateSelectGenres,setStateSelectdb,setStateOrder,
     setFilteredByGenre, setFilteredByDB,setVideogamesOrdered} from '../../redux/actions';
+import './SearchBar.css'
 
 const SearchBar = () => {
 
@@ -21,9 +22,9 @@ const SearchBar = () => {
     
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-            <input type="text"  id='buscar'/>
-               <button type='submit' >Buscar</button>
+            <form className='searchbar' onSubmit={handleSubmit}>
+            <input className='inputsearch' type="text"  id='buscar'/>
+               <button className='bottonsearch' type='submit' >Search</button>
             </form>
          
         </div>

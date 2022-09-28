@@ -1,0 +1,14 @@
+.divorder{
+    padding: 5px;
+    width: 100px;
+    margin-top: 10px;
+}
+.ulorder{
+    list-style-type: none;
+    margin-top: 5px;
+    padding: 0;
+}
+
+.ulorder li{
+    margin-top: 15px; 
+}

@@ -5,6 +5,7 @@ import GameCard from '../GameCard/GameCard.jsx';
 import { Link } from 'react-router-dom';
 import FilterCont from '../Filter/Filter';
 import OrderCont from '../Order/Order';
+import './Home.css'
 
 const Home=(props)=>{
     const PERPAGE=15;
@@ -39,15 +40,20 @@ const Home=(props)=>{
 
     return(
         <div>
-            {/* <FilterCont /> */}
-            <OrderCont/>
-            <button onClick={prevHandler}>Prev</button>
-            <label>{props.currentPage}</label>
-            <button onClick={nextHandler}>Next</button>
+          <div className='filtersorderscontainer'>
+          <FilterCont />
+          <OrderCont/>
+          </div>
+          <div className='paginatedcontainer'>
+            <button className='pagbutton' onClick={prevHandler}>Prev</button>
+            <label> Pag. {props.currentPage} </label>
+            <button className='pagbutton' onClick={nextHandler}>Next</button>
+          </div>
             <h1>
-                This is the Home Page!!!
+                {/* This is the Home Page!!! */}
             </h1>
-            <ul>{items!==undefined ? items.map(game=>{
+            <div className='divgames'>
+            {items!==undefined ? items.map(game=>{
                 return(
                  <Link key={game.id} to={`/videogames/${game.id}`}>
                 <GameCard key={game.id}
@@ -60,8 +66,8 @@ const Home=(props)=>{
                 )
             }): <>LOADING...</>}
            
-            </ul>
-
+            
+            </div>
         </div>
     );
 };

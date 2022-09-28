@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import SearchBar from '../SearchBar/SearchBar';
+import './NavBar.css'
 // CUIDADOOOO. SI O SI FUNCTIONAL COMPONENT! SE ROMPEN LOS TEST EN CASO CONTRARIO!!
 const NavBar = () => {
     
     return (
-        <div>
-                <Link to="/" >| Landing Page |</Link>
-                <Link to="/home" >| Home |</Link>
-                <Link to="/videogame/create" >| Create VideoGame |</Link>
-                
-        </div>
+        <ul className='navBar'>
+                <li><Link className='nav' to="/" > Landing Page </Link></li>
+                <li><Link className='nav' to="/home" > Home </Link></li>
+                <li><Link className='nav' to="/videogame/create" > Create VideoGame </Link></li>
+                {window.location.pathname==='/home'?<SearchBar/>:<></>}
+        </ul>
     );
 };
 

@@ -4,6 +4,7 @@ import { getGenres,setGamestoShow,setStateSelectGenres,setStateSelectdb,
     setFilteredByGenre, setFilteredByDB, setCurrentPage} from '../../redux/actions';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
+import './Filter.css'
 
 
 const FilterCont = (props) => {
@@ -72,8 +73,10 @@ function handleFilterDB(e){
 
 
     return (
-        <div>
-                <label>Genres: </label>
+        <div className='divfilter'>
+            Filter By: <br />
+                <div className='divgenres'>
+                <label>Genres: </label> <br />
                 <select defaultValue="All" id="genreselect" name="genres" onChangeCapture={handleFilterGenre}> {props.genres!==undefined ?props.genres.map(genre=>{
                    
                    return(
@@ -82,7 +85,9 @@ function handleFilterDB(e){
                 }):<></>}
                 <option value="All">All</option>
                 </select >
-                <label>Where: </label>
+                </div>
+                <br />
+                <label>Stored In: </label> <br />
                 <select defaultValue="All"  id="whereselect" name="where" onChangeCapture={handleFilterDB }> 
                 <option value="All" >All</option>
                 <option value="db">My DB</option>
