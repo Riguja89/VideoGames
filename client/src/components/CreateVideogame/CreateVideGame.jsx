@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { getGenres,getPlatforms,postVideogame} from '../../redux/actions';
 import { connect } from 'react-redux';
 import GenreCard from './GenreCar';
+import './CreateVideogame.css'
 const CreateVideoGame = (props) => {
     
     const [formData, setFormData]=useState({
@@ -45,8 +46,8 @@ const CreateVideoGame = (props) => {
 
           switch(e.target.name){
             case "name":
-            if(!/^[A-Za-z0-9\s]+$/g.test(e.target.value)){
-              setErrorName("El nombre es obligatorio y solo letras y numeros son admitidos")
+            if(!/^[A-Za-z0-9:'\s]+$/g.test(e.target.value)){
+              setErrorName(" * The name is mandatory and only letters and numbers are allowed")
             }else{setErrorName("")}
             break;
             case "image":
@@ -112,30 +113,31 @@ const CreateVideoGame = (props) => {
         arrayPlatforms.splice(i,1);
         setArrayPlatforms([...arrayPlatforms]);
         if(arrayPlatforms.length===0){
-          setErrorPlatforms("Debe por lo menos seleccionar una Plataforma para el juego")
+          setErrorPlatforms("* Debe por lo menos seleccionar una Plataforma para el juego")
         }else{setErrorPlatforms("")}
       }
 
     return (
-        <div>
-            <h1>CREATE VIDEOGAME</h1>
-             <form action="" onSubmit={handleSubmit}>
-                <label >Name: </label>
-                <input type="text" name="name" value={formData.name} onChange={handleChange}/>
-                {!errorName ? null : <span>{errorName}</span>}
-                <label>Image: </label>
-                <input type="text" name="image" value={formData.image}onChange={handleChange}/>
-                {!errorImage ? null : <span>{errorImage}</span>}
-                <label>Description: </label>
-                <textarea type="text" name="description" value={formData.description} onChange={handleChange}/>
-                {!errorDescription ? null : <span>{errorDescription}</span>}
-                <label>Released: </label>
-                <input type="date" name="released" value={formData.released} onChange={handleChange}/>
-                {!errorReleased ? null : <span>{errorReleased}</span>}
-                <label>Rating: </label>
-                <input type="number" name="rating" min="0.0" max="5.0" step="0.1" value={formData.rating} onChange={handleChange}/>
-                {!errorRating ? null : <span>{errorRating}</span>}
-                <label>Genres: </label>
+        <div className='divcreatevideogamecontainer'>
+            
+             <form className='formulario' action="" onSubmit={handleSubmit}>
+                <h1 className='title'>Create VideoGame</h1>
+                <label >Name: </label><br />
+                <input type="text" name="name" value={formData.name} onChange={handleChange}/><br />
+                {!errorName ? null : <span className='warning'>{errorName}</span>}<br />
+                <label>Image: </label><br />
+                <input type="text" name="image" value={formData.image}onChange={handleChange}/><br />
+                {!errorImage ? null : <span className='warning'>{errorImage}</span>}<br />
+                <label>Description: </label><br />
+                <textarea type="text" name="description" value={formData.description} onChange={handleChange}/><br />
+                {!errorDescription ? null : <span className='warning'>{errorDescription}</span>}<br />
+                <label>Released: </label><br />
+                <input type="date" name="released" value={formData.released} onChange={handleChange}/><br />
+                {!errorReleased ? null : <span className='warning' >{errorReleased}</span>}<br />
+                <label>Rating: </label><br />
+                <input type="number" name="rating" min="0.0" max="5.0" step="0.1" value={formData.rating} onChange={handleChange}/><br />
+                {!errorRating ? null : <span className='warning'>{errorRating}</span>}<br />
+                <label>Genres: </label><br />
                 <select defaultValue={""} name="genres" onChangeCapture={handleGenre}> {props.genres!==undefined ?props.genres.map(genre=>{  
                    return(
                         <option key={genre.id} value={genre.id}>{genre.name}</option>
@@ -148,23 +150,23 @@ const CreateVideoGame = (props) => {
                  key={g} deleteGenre={deleteGenre} id={g}>
                  </GenreCard>
                  )):<></>}</ul>
-                 {!errorGenres ? null : <span>{errorGenres}</span>}
-                <label>Platforms: </label>
+                 {!errorGenres ? null : <span className='warning'>{errorGenres}</span>}<br />
+                <label>Platforms: </label><br />
                 <select defaultValue={""} name="platforms" onChangeCapture={handlePlatform}> {props.platforms!==undefined ?props.platforms.map(plat=>{
                    return(
                         <option key={plat.id} value={plat.id}>{plat.name}</option>
                     )
                 }):<></>}
-                </select>
+                </select><br />
 
                 <ul>{arrayPlatforms.length>0? arrayPlatforms.map(g=>(
                 <GenreCard
                  name={props.platforms.find(({id})=>id===parseInt(g)).name} 
                  key={g} deleteGenre={deletePlatform} id={g}>
                  </GenreCard>
-                 )):<></>}</ul>
-                {!errorPlatforms ? null : <span>{errorPlatforms}</span>}
-                <button type="submit">Create</button>
+                 )):<></>}</ul> <br />
+                {!errorPlatforms ? null : <span className='warning'>{errorPlatforms}</span>}<br />
+                <button className='pagbutton' type="submit">Create</button>
              </form>
                 
         </div>

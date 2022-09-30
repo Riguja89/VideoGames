@@ -5,18 +5,34 @@
   border-radius: 10px;
   align-self: center;
   backdrop-filter: blur(8px);
-  margin-right: 20px;
+  margin: 10px;
   border-style:inset;
   border-color: gray;
-  margin-top: 20px;
-  text-decoration: none;
+  /* margin-top: 20px;
+  text-decoration: none; */
   }
   .cardimage{
     height:200px;
-    width:300px;
+    width:100%;
     border-radius: 10px;
   }
+
+  .namegame{
+    font-size:large;
+    text-align: center;
+    color: #52591f;
+  }
+
+  .GameCard:hover {
+    background: #282726;
+    backdrop-filter: blur(8px);
+    width: 310px;
+ margin: 5px;
+  }
   
+  .genregame{
+    display: block;
+  }
   /* .App-logo {
     height: 40vmin;
     pointer-events: none;

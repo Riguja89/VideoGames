@@ -1,8 +1,8 @@
-import { PageHeader } from "antd";
 import {getVideoGameId} from "../../redux/actions";
 import { connect } from "react-redux";
 import React from "react";
-
+import './GameDetail.css';
+import Description from "./Description";
 class GameDetail extends React.Component {
 
   componentDidMount() {
@@ -15,31 +15,37 @@ class GameDetail extends React.Component {
   }
 
   render() {
+    
     return (
-      <div>
-        <PageHeader
-          title={
+      
+      <div className="divgamedatail">
+
+        <div className="gamedetailcontainer">
+
+          <p onClick={() => this.props.history.goBack()}>⬅Go back</p>
+     
+        <h1 className="title">{
             this.props.videogame.name === undefined 
               ? "Cargando..."
               : this.props.videogame === null
               ? "Video Game no encontrado..."
               : this.props.videogame.name
-          }
-          onBack={() => this.props.history.goBack()}
-        />
+          }</h1>
         {this.props.videogame?.id && (
-          <img src={this.props.videogame.image} alt="" />
+          <img className="imagegamedetail" src={this.props.videogame.image} alt="" />
           )}
         {this.props.videogame?.id && (
-                        <ul> Genres: {this.props.videogame.genres.map((genre)=>{return(
-                          <p key={genre.id}>{genre.name}, </p>
-                      )})} </ul>
+                        <p> Genres: {this.props.videogame.genres.map((genre,i)=>{return(
+                          <label key={genre.id}>{genre.name}
+                          {this.props.videogame.genres.length===i+1?".":","} </label>
+                      )})} </p>
           )}
-         <div>{(this.props.videogame.description) }</div>
+            <Description des={this.props.videogame.description}/>
          {this.props.videogame?.platforms && (
-                        <ul> Platforms: {this.props.videogame.platforms.map((platform)=>{return(
-                          <p key={platform.id}>{platform.name}, </p>
-                      )})} </ul>
+                        <p> Platforms: {this.props.videogame.platforms.map((platform,i)=>{return(
+                          <label key={platform.id}>{platform.name}
+                          {this.props.videogame.platforms.length===i+1?".":","} </label>
+                      )})} </p>
           )}
           {this.props.videogame?.released && (
                    <p>
@@ -51,6 +57,7 @@ class GameDetail extends React.Component {
                     Rating: {this.props.videogame.rating}
                    </p>
           )}
+          </div>
       </div>
     );
   }

@@ -1,0 +1,36 @@
+.imagegamedetail{
+    width:80%;
+    padding-left: 10%;
+
+}
+
+.divgamedatail{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.082);
+   
+}
+
+.gamedetailcontainer{
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    right: 10%;
+    padding: 15px;
+    background: #52591f;
+    color: aliceblue;
+    text-decoration-color: #dce9f5;
+    justify-content: center;
+}
+
+.title{
+    font-size: xx-large;
+    text-align: center;
+}
+#description{
+    text-align: justify;
+    padding: 20px;
+}

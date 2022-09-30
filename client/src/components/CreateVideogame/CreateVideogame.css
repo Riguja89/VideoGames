@@ -1,0 +1,41 @@
+.warning{
+    color: red;
+}
+.delete{
+    color: red;
+}
+
+
+.divcreatevideogamecontainer{
+    position: absolute;
+    top: 45px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.082);
+}
+.formulario{
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    right: 10%;
+    padding: 15px;
+    background: #52591f;
+    color: aliceblue;
+    text-decoration-color: #dce9f5;
+   text-align: center;
+   border-radius: 8px;
+}
+.formulario input{
+    border-radius: 4px;
+    width: 280px;
+}
+.formulario select{
+    border-radius: 4px;
+    width: 280px;
+}
+.formulario textarea{
+    border-radius: 4px;
+    width: 280px;
+    height: 100px;
+}
