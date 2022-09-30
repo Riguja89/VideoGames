@@ -39,7 +39,8 @@ const Home=(props)=>{
      }
 
     return(
-        <div>
+        <div>{props.videogames.length!==0 ?
+          <div>
           <div className='filtersorderscontainer'>
           <FilterCont />
           <OrderCont/>
@@ -53,21 +54,27 @@ const Home=(props)=>{
                 {/* This is the Home Page!!! */}
             </h1>
             <div className='divgames'>
-            {items!==undefined ? items.map(game=>{
-                return(
-                 <Link key={game.id} to={`/videogames/${game.id}`}>
-                <GameCard key={game.id}
-                image={game.image}
-                id={game.id}
-                name={game.name}
-                genres={game.genres}>
-                </GameCard>
-                </Link>
-                )
-            }): <>LOADING...</>}
+            {props.videogames.length!==0 && items.length===0 ?
+            <> SORRY !!!, THERE ARE NO VIDEO GAMES TO SHOW BASED ON THAT SEARCH :(</>:
+            items.map(game=>{
+              return(
+               <Link key={game.id} to={`/videogames/${game.id}`}>
+              <GameCard key={game.id}
+              image={game.image}
+              id={game.id}
+              name={game.name}
+              genres={game.genres}>
+              </GameCard>
+              </Link>
+              )
+          })
+          }
            
             
             </div>
+            </div>
+            :<div className='loading'> LOADING...</div>
+            }
         </div>
     );
 };

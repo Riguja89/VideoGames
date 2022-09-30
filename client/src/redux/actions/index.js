@@ -16,6 +16,7 @@ export const SET_FILTERD_BY_DB ="SET_FILTERD_BY_DB";
 export const SET_VIDEOGAMES_ORDERED="SET_VIDEOGAMES_ORDERED";
 export const SET_STATE_ORDER="SET_STATE_ORDER";
 export const SET_CURRENT_PAGE="SET_CURRENT_PAGE";
+export const CLEAR_VIDEOGAMES="CLEAR_VIDEOGAMES";
 // Fijarse que la sintaxis de nuestra Action creator es distinta a lo que venimos haciendo. Esto es
 // debido al uso del middleware "thunk", el cual nos permite trabajar con acciones asincrónicas.
 // Necesitamos hacer uso de este middleware ya que nuestras peticiones al back siempre son asincrónicas,
@@ -30,7 +31,6 @@ export const SET_CURRENT_PAGE="SET_CURRENT_PAGE";
 export const getAllVideoGames = () => dispatch => {
     //console.log("va a hacer la peticion")
     
-    
         return axios("http://localhost:3001/api/videogames")
  
         .then(r => r.data)
@@ -42,12 +42,14 @@ export const getAllVideoGames = () => dispatch => {
 
 };
 
+export const clearVideogames=()=>dispatch=>{
+  dispatch({ type:GET_ALL_VIDEOGAMES, payload: [] }) // se lleva el paiload vacio
+}
 
 
 export const searchGames = (name) => dispatch => {
   //console.log("va a hacer la peticion")
-  
-  
+      
       return axios("http://localhost:3001/api/videogames?name="+name)
 
       .then(r => r.data)

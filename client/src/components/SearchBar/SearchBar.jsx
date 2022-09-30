@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { searchGames,setGamestoShow,setCurrentPage,setStateSelectGenres,setStateSelectdb,setStateOrder,
-    setFilteredByGenre, setFilteredByDB,setVideogamesOrdered} from '../../redux/actions';
+    setFilteredByGenre, setFilteredByDB,setVideogamesOrdered,clearVideogames} from '../../redux/actions';
 import './SearchBar.css'
 
 const SearchBar = () => {
@@ -9,6 +9,7 @@ const SearchBar = () => {
     const dispatch=useDispatch();
     function handleSubmit(e) {
         e.preventDefault();
+        dispatch(clearVideogames());
         dispatch(searchGames(document.getElementById("buscar").value));
         dispatch(setGamestoShow([]));
         dispatch(setCurrentPage(1));

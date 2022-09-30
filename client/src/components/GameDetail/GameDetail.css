@@ -29,8 +29,19 @@
 .title{
     font-size: xx-large;
     text-align: center;
+    
+    
 }
 #description{
     text-align: justify;
     padding: 20px;
+}
+
+.loading{
+    text-align: center;
+    margin: 0 auto;
+    width:250px;
+    height:300px; 
+    background-repeat: no-repeat;
+    background-image: url("../../images/Loading_fondotransparente.gif");
 }

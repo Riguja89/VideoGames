@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import React from "react";
 import './GameDetail.css';
 import Description from "./Description";
+
+
 class GameDetail extends React.Component {
 
   componentDidMount() {
@@ -22,17 +24,18 @@ class GameDetail extends React.Component {
 
         <div className="gamedetailcontainer">
 
-          <p onClick={() => this.props.history.goBack()}>⬅Go back</p>
-     
-        <h1 className="title">{
+          <p onClick={() => this.props.history.goBack()}>⬅ Go back</p>
+         
+        <div className="title">{
             this.props.videogame.name === undefined 
-              ? "Cargando..."
+              ?  <div className="loading"> LOADING...</div>
               : this.props.videogame === null
               ? "Video Game no encontrado..."
               : this.props.videogame.name
-          }</h1>
+          }</div>
         {this.props.videogame?.id && (
           <img className="imagegamedetail" src={this.props.videogame.image} alt="" />
+         
           )}
         {this.props.videogame?.id && (
                         <p> Genres: {this.props.videogame.genres.map((genre,i)=>{return(
