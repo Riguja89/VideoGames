@@ -18,6 +18,7 @@ useEffect(()=>{
     if(props.filteredbyDB.length===0)dispatch(setFilteredByDB(props.videogamesOrdered));
     document.getElementById("genreselect").value=props.stateSelectGenres;
     document.getElementById("whereselect").value=props.stateSelectDb;
+    console.log("hola desde filter")
 },[props.videogamesOrdered,props.videogames])
 
 function handleFilterGenre(e){
@@ -77,13 +78,15 @@ function handleFilterDB(e){
             Filter By: <br />
                 <div className='divgenres'>
                 <label>Genres: </label> <br />
-                <select defaultValue="All" id="genreselect" name="genres" onChangeCapture={handleFilterGenre}> {props.genres!==undefined ?props.genres.map(genre=>{
+                <select defaultValue="All" id="genreselect" name="genres" onChangeCapture={handleFilterGenre}> 
+                <option value="All">All</option>
+                {props.genres!==undefined ?props.genres.map(genre=>{
                    
                    return(
                         <option key={genre.id} value={genre.id}>{genre.name}</option>
                     )
                 }):<></>}
-                <option value="All">All</option>
+                
                 </select >
                 </div>
                 <br />

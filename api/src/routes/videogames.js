@@ -98,13 +98,15 @@ router.put('/',(req, res, next)=>{
 })
 
 router.post('/',async(req, res, next)=>{
-    const{name,image,description,released, rating, genres,platforms}=req.body;
+    var{name,image,description,released, rating, genres,platforms}=req.body;
+    if(!image)image=null; if(!released)released=null; if(!rating)rating=null;
     try {
         const newVideoGame= await Videogame.create(
             {
                 name,image,description,released,rating
             }
         );
+        if(genres.length>0){
         const newVideogameGenre= genres.map(gen=>{
             return{
                 videogameId:newVideoGame.id,
@@ -112,6 +114,7 @@ router.post('/',async(req, res, next)=>{
             }
         })
         await VideogameGenre.bulkCreate(newVideogameGenre)
+         }
         const newVideogamePlatform=await platforms.map(plat=>{
             return{
                 videogameId:newVideoGame.id,

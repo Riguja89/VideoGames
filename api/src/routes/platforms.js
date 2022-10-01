@@ -23,8 +23,20 @@ router.post('/',async (req, res, next)=>{
 })
 
 router.get('/',async(req, res, next)=>{
+    var platforms=[];
     try {
-        res.json(await Platform.findAll())
+        platforms=await Platform.findAll();
+        
+        platforms.sort(function(a,b){
+            if (a.name.toLowerCase() > b.name.toLowerCase()) {
+                return 1;
+              }
+              if (a.name.toLowerCase() < b.name.toLowerCase()) {
+                return -1;
+              }
+              return 0; 
+        })
+        res.json(platforms)
     } catch (error) {
         next(error)
     }

@@ -15,6 +15,7 @@ const Home=(props)=>{
         if(props.videogames.length===0)props.getAllVideoGames();
         if(props.gamestoShow.length===0)props.setGamestoShow(props.videogames);
         if(props.videogamesOrdered.length===0)props.setVideogamesOrdered(props.videogames);
+        console.log("holi")
       },[props.videogames]);
 
      

@@ -5,8 +5,19 @@ const {API_KEY} = process.env;
 const router = Router();
 
 router.get('/',async(req, res, next)=>{
+    var genres=[]
     try {
-        res.json(await Genre.findAll())
+        genres=await Genre.findAll();
+        genres.sort(function(a,b){
+            if (a.name.toLowerCase() > b.name.toLowerCase()) {
+                return 1;
+              }
+              if (a.name.toLowerCase() < b.name.toLowerCase()) {
+                return -1;
+              }
+              return 0; 
+        })
+        res.json(genres)
     } catch (error) {
         next(error)
     }

@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';  
 import { getGenres,getPlatforms,postVideogame} from '../../redux/actions';
+import { setGamestoShow,setCurrentPage,setStateSelectGenres,setStateSelectdb,setStateOrder,
+  setFilteredByGenre, setFilteredByDB,setVideogamesOrdered} from '../../redux/actions';
 import { connect } from 'react-redux';
 import GenreCard from './GenreCar';
 import './CreateVideogame.css'
@@ -34,6 +36,9 @@ const CreateVideoGame = (props) => {
         if(props.platforms.length===0) dispatch(getPlatforms());
         setArrayGenres([]);
         setArrayPlatforms([]);
+        setErrorName(" * The name is mandatory and only letters and numbers are allowed.")
+        setErrorDescription( "* The description is mandatory.")
+        setErrorPlatforms(" * You must select at least one platform for the video game.")
       },[props.genres.length, props.platforms.length, dispatch])
 
       function handleChange(e) {
@@ -94,8 +99,23 @@ const CreateVideoGame = (props) => {
         formData.genres= arrayGenres;
         formData.platforms=arrayPlatforms;
         console.log(formData);
+        if(!errorName && !errorDescription && !errorPlatforms){
        dispatch(postVideogame(formData));
        
+       dispatch(setGamestoShow([]));
+       dispatch(setCurrentPage(1));
+       dispatch(setStateSelectGenres("All"));
+       dispatch(setStateSelectdb("All"));
+       dispatch(setStateOrder(null));
+       dispatch(setFilteredByGenre([])); 
+       dispatch(setFilteredByDB([])); 
+       dispatch(setVideogamesOrdered([]));    
+       
+
+        }
+        else{
+          alert( "Hay errores qeu se deben solucionar")
+        }
       }
 
       const deleteGenre=(id)=>{
@@ -125,7 +145,7 @@ const CreateVideoGame = (props) => {
                 <label >Name: </label><br />
                 <input type="text" name="name" value={formData.name} onChange={handleChange}/><br />
                 {!errorName ? null : <span className='warning'>{errorName}</span>}<br />
-                <label>Image: </label><br />
+                <label>URL Image: </label><br />
                 <input type="text" name="image" value={formData.image}onChange={handleChange}/><br />
                 {!errorImage ? null : <span className='warning'>{errorImage}</span>}<br />
                 <label>Description: </label><br />
