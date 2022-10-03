@@ -95,10 +95,10 @@ Order By: <br />
     <input id="za" onClick={handleOrder} type="radio" name="order" value="za"/> Z...A<br />
 </li>
 <li >
-    <input id="ratinga" onClick={handleOrder} type="radio" name="order" value="ratinga"/> Rating ↓<br />
+    <input id="ratinga" onClick={handleOrder} type="radio" name="order" value="ratinga"/> Rating ↑<br />
 </li>
 <li >
-    <input id="ratingd" onClick={handleOrder} type="radio" name="order" value="ratingd"/> Rating ↑<br />
+    <input id="ratingd" onClick={handleOrder} type="radio" name="order" value="ratingd"/> Rating ↓<br />
 </li>
 </ul>
 

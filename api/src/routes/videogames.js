@@ -68,7 +68,9 @@ router.get('/:id',async(req, res, next)=>{
                 include:[Genre,Platform],
                 where:{id:id}
             })
+            
           game=game2[0];
+          if(game.length===0)game.name=null;
 
         }else{
             game=await axios.get('https://api.rawg.io/api/games/'+id+'?key='+API_KEY);
@@ -132,6 +134,7 @@ router.post('/',async(req, res, next)=>{
         );
     } catch (error) {
         next(error);
+        res.status(500);
     }
    
 })

@@ -5,3 +5,11 @@
 .divgenres{
     margin-top:20px;
 }
+
+#genreselect{
+    border-radius: 4px;
+}
+
+#whereselect{
+    border-radius: 4px;
+} 

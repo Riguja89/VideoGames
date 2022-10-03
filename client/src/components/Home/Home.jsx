@@ -64,7 +64,8 @@ const Home=(props)=>{
               image={game.image}
               id={game.id}
               name={game.name}
-              genres={game.genres}>
+              genres={game.genres}
+              rating={game.rating}>
               </GameCard>
               </Link>
               )

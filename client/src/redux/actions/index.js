@@ -98,8 +98,10 @@ export const postVideogame = (videogame) => dispatch => {
 
       .then(r => r.data)
       .then(d => dispatch({ type:POST_VIDEOGAME, payload: d }) )
+      .then(alert("The video game was created successfully"))
       .catch((error) => {
         console.log(error);
+        alert("The creation of the video game was NOT successful")
       });
       
 
@@ -114,7 +116,9 @@ export const getVideoGameId = (id) => dispatch => {
       .then(r => r.data)
       .then(d => dispatch({ type:GET_VIDEOGAME_ID, payload: d }) )
       .catch((error) => {
+
         console.log(error);
+        dispatch({ type:GET_VIDEOGAME_ID, payload: {name:null} })
       });
     }else{
       dispatch({ type:GET_VIDEOGAME_ID, payload: {} })

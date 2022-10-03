@@ -9,7 +9,7 @@ const GenreCard = (props) => {
     
     return (
         <div className="GenreCard">
-            <label>-{props.name}</label>
+            <label>{props.name}</label>
           <label className='delete' onClick={deletegenre}> ✗</label>
         </div>
     );

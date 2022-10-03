@@ -29,7 +29,7 @@ class GameDetail extends React.Component {
         <div className="title">{
             this.props.videogame.name === undefined 
               ?  <div className="loading"> LOADING...</div>
-              : this.props.videogame === null
+              : this.props.videogame.name === null
               ? "Video Game no encontrado..."
               : this.props.videogame.name
           }</div>
@@ -57,7 +57,7 @@ class GameDetail extends React.Component {
           )}
                     {this.props.videogame?.rating && (
                    <p>
-                    Rating: {this.props.videogame.rating}
+                    Rating: {this.props.videogame.rating} ⭐
                    </p>
           )}
           </div>

@@ -18,8 +18,9 @@ module.exports = (sequelize) => {
       //allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(2000),
       allowNull: false,
+      //length: 2000,
     },
     released: {
       type: DataTypes.DATEONLY,

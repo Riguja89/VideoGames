@@ -32,7 +32,12 @@
   
   .genregame{
     display: block;
+    margin-left: 10px;
   }
+  .rating{
+   text-align: right;
+   margin-right: 8px;
+}
   /* .App-logo {
     height: 40vmin;
     pointer-events: none;
