@@ -37,6 +37,7 @@ export const getAllVideoGames = () => dispatch => {
         .then(d => dispatch({ type:GET_ALL_VIDEOGAMES, payload: d }) )
         .catch((error) => {
           console.log(error);
+          dispatch({ type:GET_ALL_VIDEOGAMES, payload: ["error"] }) 
         });
         
 
@@ -97,11 +98,13 @@ export const postVideogame = (videogame) => dispatch => {
       return axios.post("http://localhost:3001/api/videogames",videogame)
 
       .then(r => r.data)
-      .then(d => dispatch({ type:POST_VIDEOGAME, payload: d }) )
-      .then(alert("The video game was created successfully"))
+      .then(d =>{ dispatch({ type:POST_VIDEOGAME, payload: d }) 
+      if(d[0].name===videogame.name)alert("The video game was created successfully")
+      console.log(d[0].name + videogame.name)
+    })
       .catch((error) => {
         console.log(error);
-        alert("The creation of the video game was NOT successful")
+        alert("The creation of the video game was NOT successfull")
       });
       
 

@@ -30,7 +30,7 @@ class GameDetail extends React.Component {
             this.props.videogame.name === undefined 
               ?  <div className="loading"> LOADING...</div>
               : this.props.videogame.name === null
-              ? "Video Game no encontrado..."
+              ? "Video game not found..."
               : this.props.videogame.name
           }</div>
         {this.props.videogame?.id && (

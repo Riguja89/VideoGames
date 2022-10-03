@@ -40,7 +40,7 @@ const Home=(props)=>{
      }
 
     return(
-        <div>{props.videogames.length!==0 ?
+        <div>{props.videogames[0]!=="error" && props.videogames.length>0?
           <div>
           <div className='filtersorderscontainer'>
           <FilterCont />
@@ -75,7 +75,10 @@ const Home=(props)=>{
             
             </div>
             </div>
-            :<div className='loading'> LOADING...</div>
+            :props.videogames[0]==="error"? 
+            <div>Error Server, please contact support</div>:
+            <div className='loading'> LOADING...</div> 
+            
             }
         </div>
     );

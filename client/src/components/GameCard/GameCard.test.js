@@ -39,16 +39,16 @@ describe('GameCard',()=>{
       });
 
       it('Debería renderizar un "label" que contenga el texto "Name: " más el nombre del videojuego', () => {
-        expect(gameCard(game1).find("label").at(0).text()).toBe(` Name: ${game1.name} `);
-        expect(gameCard(game2).find("label").at(0).text()).toBe(` Name: ${game2.name} `);
-        expect(gameCard(game3).find("label").at(0).text()).toBe(` Name: ${game3.name} `);
+        expect(gameCard(game1).find("h1").at(0).text()).toBe(` ${game1.name} `);
+        expect(gameCard(game2).find("h1").at(0).text()).toBe(` ${game2.name} `);
+        expect(gameCard(game3).find("h1").at(0).text()).toBe(` ${game3.name} `);
       });
     
       it('Debería renderizar un "p" que contenga el texto del nomgre de genero del video juego', () => {
-        expect(gameCard(game1).find("p").at(0).text()).toBe(`${game1.genres[0].name}, `);
-        expect(gameCard(game2).find("p").at(0).text()).toBe(`${game2.genres[0].name}, `);
-        expect(gameCard(game3).find("p").at(0).text()).toBe(`${game3.genres[0].name}, `);
-        expect(gameCard(game3).find("p").at(1).text()).toBe(`${game3.genres[1].name}, `);
+        expect(gameCard(game1).find("p").at(0).text()).toBe(`${game1.genres[0].name}.  `);
+        expect(gameCard(game2).find("p").at(0).text()).toBe(`${game2.genres[0].name}.  `);
+        expect(gameCard(game3).find("p").at(0).text()).toBe(`${game3.genres[0].name}, ${game3.genres[1].name}.  `);
+      
       });
 });
 

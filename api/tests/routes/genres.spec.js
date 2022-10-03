@@ -2,17 +2,22 @@ const session = require('supertest-session');
 const app = require('../../src/app.js');
 const { expect } = require('chai');
 
+
 const agent = session(app);
 
 describe('Genres Route', ()=>{
     it('responds with 200', () => agent.get('/api/genres').expect(200));
     
 
-    it('responds with 200', (done) => agent.post('/api/genres').expect(200,done()));
-
-
-    it('should reply the POST method Genres must be json', async() => {
-        const res = await agent.post('/api/genres').expect('Content-Type', 'application/json; charset=utf-8');
+    it('should reply the POST method Genres must be json or error if exixt genre', async () =>{
+      try {
+        let genres= await agent.post('/api/genres')
+        expect(200)
+        expect(genres).to.be.an('object')
+      } catch (error) {
+        
+      }
+      
       });
 
     it('responds with 200', () => agent.put('/api/genres').expect(200));
