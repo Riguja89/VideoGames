@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getAllVideoGames,setGamestoShow,setVideogamesOrdered,setCurrentPage } from '../../redux/actions/index';
+import { getAllVideoGames,setGamestoShow,setVideogamesOrdered,setCurrentPage,deleteVideoGameId } from '../../redux/actions/index';
 import GameCard from '../GameCard/GameCard.jsx';
 import { Link } from 'react-router-dom';
 import FilterCont from '../Filter/Filter';
@@ -21,6 +21,7 @@ const Home=(props)=>{
      
       useEffect(() => {
         setItems([...props.gamestoShow].splice((props.currentPage-1)*PERPAGE,PERPAGE));      
+      console.log("actualiza items")
       },[props.gamestoShow]);
 
     const nextHandler=()=>{
@@ -37,6 +38,12 @@ const Home=(props)=>{
         setItems([...props.gamestoShow].splice((prevPage-1)*PERPAGE,PERPAGE));
         props.setCurrentPage(prevPage);
 
+     }
+
+     const deletegameHandler=(e)=>{
+      props.deleteVideoGameId(e.target.id)
+      setItems(items=>items.filter(i=>i.id!==e.target.id))
+      
      }
 
     return(
@@ -59,6 +66,7 @@ const Home=(props)=>{
             <> SORRY !!!, THERE ARE NO VIDEO GAMES TO SHOW BASED ON THAT SEARCH :(</>:
             items.map(game=>{
               return(
+                <div className='gamecardcotainer' key={game.id} >
                <Link key={game.id} to={`/videogames/${game.id}`}>
               <GameCard key={game.id}
               image={game.image}
@@ -68,6 +76,9 @@ const Home=(props)=>{
               rating={game.rating}>
               </GameCard>
               </Link>
+              {game.id.length>9? <button id={game.id} onClick={deletegameHandler} className='btndelete'>Delete</button>:<></>}
+        
+              </div>
               )
           })
           }
@@ -100,6 +111,7 @@ function mapDispatchToProps(dispatch){
    setGamestoShow: (games)=>dispatch(setGamestoShow(games)),
    setVideogamesOrdered: (games)=>dispatch(setVideogamesOrdered(games)),
    setCurrentPage: (page)=>dispatch(setCurrentPage(page)),
+   deleteVideoGameId:(id)=>dispatch(deleteVideoGameId(id)),
     };
 };
 

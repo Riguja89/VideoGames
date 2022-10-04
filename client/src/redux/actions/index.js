@@ -17,6 +17,7 @@ export const SET_VIDEOGAMES_ORDERED="SET_VIDEOGAMES_ORDERED";
 export const SET_STATE_ORDER="SET_STATE_ORDER";
 export const SET_CURRENT_PAGE="SET_CURRENT_PAGE";
 export const CLEAR_VIDEOGAMES="CLEAR_VIDEOGAMES";
+export const DELETE_VIDEOGAME="DELETE_VIDEOGAME";
 // Fijarse que la sintaxis de nuestra Action creator es distinta a lo que venimos haciendo. Esto es
 // debido al uso del middleware "thunk", el cual nos permite trabajar con acciones asincrónicas.
 // Necesitamos hacer uso de este middleware ya que nuestras peticiones al back siempre son asincrónicas,
@@ -125,6 +126,24 @@ export const getVideoGameId = (id) => dispatch => {
       });
     }else{
       dispatch({ type:GET_VIDEOGAME_ID, payload: {} })
+    }
+
+};
+
+export const deleteVideoGameId = (id) => dispatch => {
+  //console.log("va a hacer la peticion")
+  
+  if(id){
+      return axios.delete(`http://localhost:3001/api/videogames/${id}`)
+
+      .then(r => r.data)
+      .then(d => dispatch({ type:DELETE_VIDEOGAME, payload: {id:id, d:d} }) )
+      .catch((error) => {
+        console.log(error);
+       alert("Trouble removing the indicated game")
+      });
+    }else{
+      alert("Without ID to remove")
     }
 
 };

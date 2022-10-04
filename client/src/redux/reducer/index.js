@@ -117,7 +117,35 @@ const initialState = {
                     return{
                         ...state,
                         videogamesOrdered: action.payload
-                  };                  
+                  };    
+            case 'DELETE_VIDEOGAME':
+
+           
+                  function deletegame(arra){
+                    let index=arra.findIndex((g)=>g.id===action.payload.id)
+                    if(index!==-1) arra.splice(index,1)
+                    console.log(arra)
+                    return(arra);
+                  }
+                    
+                  var auxVideogames=deletegame(state.videogames);
+                  var auxvideogamesOrdered=deletegame(state.videogamesOrdered);
+                  var auxfilteredbyGenre=deletegame(state.filteredbyGenre);
+                  var auxfilteredbyDB=deletegame(state.filteredbyDB);
+                  var auxgamestoShow=deletegame(state.gamestoShow);
+                 
+    
+
+                    return{
+                      ...state,
+                      videogames:auxVideogames,
+                      gamestoShow: auxgamestoShow,
+                      filteredbyDB: auxfilteredbyDB,
+                      filteredbyGenre: auxfilteredbyGenre,
+                      videogamesOrdered:auxvideogamesOrdered
+
+                  };                   
+                  
           default: return {...state};
        
     };

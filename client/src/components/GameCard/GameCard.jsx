@@ -4,7 +4,7 @@ const GameCard = (props) => {
     let start=[]
     for(var i=1;i<=Math.round(props.rating);i++){start.push("✰")}
     return (
-    
+         
         <div className="GameCard">
           <img className='cardimage' src={props.image} alt="" />
           {/* <p>ID: {props.id}</p> */}
@@ -17,7 +17,9 @@ const GameCard = (props) => {
           <div className='rating' >
          {start.map((s,i)=>(<label key={i}>{s}</label>))}
          </div>
+
         </div>
+       
     );
 };
 

@@ -139,8 +139,33 @@ router.post('/',async(req, res, next)=>{
    
 })
 
-router.delete('/',(req, res, next)=>{
-    res.send('Soy delete/videogame')
+router.delete('/:id', async(req, res, next)=>{
+    const id=req.params.id;
+
+    VideogamePlatform.destroy({
+        where:{videogameId:id}
+    })
+
+    VideogameGenre.destroy({
+        where:{videogameId:id}
+    })
+    
+
+    try {
+
+        const respuesta= await Videogame.destroy({
+            where:{id:id}
+        })
+    
+        res.json(respuesta);
+        
+    } catch (error) {
+        next(error);
+        res.status(404);
+    }
+    
+
+   
 })
 
 module.exports = router;

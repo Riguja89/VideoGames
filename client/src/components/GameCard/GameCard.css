@@ -5,11 +5,14 @@
   border-radius: 10px;
   align-self: center;
   backdrop-filter: blur(8px);
-  margin: 10px;
+ 
   border-style:inset;
   border-color: gray;
   /* margin-top: 20px;
   text-decoration: none; */
+  }
+  .gamecardcotainer{
+    margin: 10px;
   }
   .cardimage{
     height:200px;
@@ -23,11 +26,12 @@
     color: #52591f;
   }
 
-  .GameCard:hover {
+  .gamecardcotainer:hover {
     background: #282726;
     backdrop-filter: blur(8px);
     width: 310px;
- margin: 5px;
+    margin: 5px;
+    border-radius: 10px;
   }
   
   .genregame{
@@ -38,7 +42,12 @@
    text-align: right;
    margin-right: 8px;
 }
-  /* .App-logo {
-    height: 40vmin;
-    pointer-events: none;
-  } */
+.btndelete{
+height: 20px;
+float: left;
+margin-left: 30px;
+margin-top: 0px;
+border-radius: 4px;
+background-color: #522e75;
+color: white;
+}
