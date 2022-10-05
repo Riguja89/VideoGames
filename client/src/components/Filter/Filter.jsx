@@ -18,7 +18,7 @@ useEffect(()=>{
     if(props.filteredbyDB.length===0)dispatch(setFilteredByDB(props.videogamesOrdered));
     document.getElementById("genreselect").value=props.stateSelectGenres;
     document.getElementById("whereselect").value=props.stateSelectDb;
-    console.log("hola desde filter")
+   
 },[props.videogamesOrdered,props.videogames])
 
 function handleFilterGenre(e){

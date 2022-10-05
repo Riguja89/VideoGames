@@ -21,3 +21,12 @@ li {
 .nav:hover{
     background-color: #111;
 }
+
+.currentrut{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: rgb(24, 23, 23);
+}

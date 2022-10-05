@@ -49,17 +49,22 @@ router.get('/',async (req, res, next)=>{
             ]});
            // console.log( VideoGameFiltered);
             res.json(VideoGameFiltered)
-        });
+        }).catch((e)=> {next(e)
+            if(videogamesDb.length!==0)res.json(videogamesDb)
+            else res.status(500);
+            });
     
         
              
     } catch (error) {
         next(error);
+        if(videogamesDb.length!==0)res.json(videogamesDb)
+        else res.status(500);
     }
  
 })
 router.get('/:id',async(req, res, next)=>{
-    const id=req.params.id
+    const id=req.query.id
     let game, game2;
  
     try {

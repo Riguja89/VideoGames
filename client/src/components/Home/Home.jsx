@@ -10,26 +10,28 @@ import './Home.css'
 const Home=(props)=>{
     const PERPAGE=15;
     const [items, setItems]=useState([...props.gamestoShow].splice(0,PERPAGE));
+    const [totalpages, setTotalpage]=useState(Math.ceil([...props.gamestoShow].length/PERPAGE))
   
       useEffect(() => {
         if(props.videogames.length===0)props.getAllVideoGames();
         if(props.gamestoShow.length===0)props.setGamestoShow(props.videogames);
         if(props.videogamesOrdered.length===0)props.setVideogamesOrdered(props.videogames);
-        console.log("holi")
       },[props.videogames]);
 
      
       useEffect(() => {
-        setItems([...props.gamestoShow].splice((props.currentPage-1)*PERPAGE,PERPAGE));      
-      console.log("actualiza items")
+        setItems([...props.gamestoShow].splice((props.currentPage-1)*PERPAGE,PERPAGE));   
+        setTotalpage(Math.ceil([...props.gamestoShow].length/PERPAGE));   
+      
       },[props.gamestoShow]);
 
     const nextHandler=()=>{
         const nextPage=props.currentPage+1;
-        if(props.gamestoShow.length<props.currentPage*PERPAGE) return;
+        if(props.gamestoShow.length<=props.currentPage*PERPAGE) return;
         setItems([...props.gamestoShow].splice((nextPage-1)*PERPAGE,PERPAGE));
         props.setCurrentPage(nextPage);
-
+        setTotalpage(Math.ceil([...props.gamestoShow].length/PERPAGE));
+        
      }
 
      const prevHandler=()=>{
@@ -37,7 +39,8 @@ const Home=(props)=>{
         if(prevPage<1) return;
         setItems([...props.gamestoShow].splice((prevPage-1)*PERPAGE,PERPAGE));
         props.setCurrentPage(prevPage);
-
+        setTotalpage(Math.ceil([...props.gamestoShow].length/PERPAGE));
+        
      }
 
      const deletegameHandler=(e)=>{
@@ -55,7 +58,7 @@ const Home=(props)=>{
           </div>
           <div className='paginatedcontainer'>
             <button className='pagbutton' onClick={prevHandler}>Prev</button>
-            <label> Pag. {props.currentPage} </label>
+            <label> Pag. {props.currentPage} of {totalpages} </label>
             <button className='pagbutton' onClick={nextHandler}>Next</button>
           </div>
             <h1>
@@ -84,7 +87,12 @@ const Home=(props)=>{
           }
            
             
-            </div>
+            </div><br />
+            <div className='paginatedcontainer'>
+            <button className='pagbutton' onClick={prevHandler}>Prev</button>
+            <label> Pag. {props.currentPage} of {totalpages} </label>
+            <button className='pagbutton' onClick={nextHandler}>Next</button>
+          </div>
             </div>
             :props.videogames[0]==="error"? 
             <div>Error Server, please contact support</div>:

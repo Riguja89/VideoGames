@@ -11,7 +11,7 @@
     bottom: 0;
     right: 0;
     background: rgba(0, 0, 0, 0.082);
-   
+    
 }
 
 .gamedetailcontainer{
@@ -21,6 +21,7 @@
     right: 10%;
     padding: 15px;
     background-image: url("../../images/fondo-create.jpg");
+   
     color: aliceblue;
     text-decoration-color: #dce9f5;
     justify-content: center;
@@ -35,6 +36,7 @@
 #description{
     text-align: justify;
     padding: 20px;
+    background-blend-mode:darken;
 }
 
 .loading{

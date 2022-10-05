@@ -42,7 +42,7 @@ const CreateVideoGame = (props) => {
       },[props.genres.length, props.platforms.length, dispatch])
 
       function handleChange(e) {
-        console.log(e.target.value);
+        //console.log(e.target.value);
 
         setFormData({
             ...formData,
@@ -101,7 +101,7 @@ const CreateVideoGame = (props) => {
         e.preventDefault();
         formData.genres= arrayGenres;
         formData.platforms=arrayPlatforms;
-        console.log(formData);
+        //console.log(formData);
         if(!errorName && !errorDescription && !errorPlatforms){
 
           if(errorImage) formData.image="";
@@ -118,7 +118,14 @@ const CreateVideoGame = (props) => {
        dispatch(setFilteredByGenre([])); 
        dispatch(setFilteredByDB([])); 
        dispatch(setVideogamesOrdered([]));    
-       
+       setFormData({      name: "",
+       image: "",
+       description: "",
+       released: "",
+       rating: 0,
+       genres: [],
+       platforms:[]
+      });
 
         }
         else{
@@ -173,12 +180,12 @@ const CreateVideoGame = (props) => {
                     )
                 }):<></>}
                 </select>
-                <p>{arrayGenres.length>0? arrayGenres.map(g=>(
+                <div>{arrayGenres.length>0? arrayGenres.map(g=>(
                 <GenreCard
                  name={props.genres.find(({id})=>id===parseInt(g)).name} 
                  key={g} deleteGenre={deleteGenre} id={g}>
                  </GenreCard>
-                 )):<></>}</p>
+                 )):<></>}</div>
                  {!errorGenres ? null : <span className='warning'>{errorGenres}</span>}<br />
                 <label>*Platforms: </label><br />
                 <select defaultValue={""} name="platforms" onChangeCapture={handlePlatform}> {props.platforms!==undefined ?props.platforms.map(plat=>{
@@ -188,12 +195,12 @@ const CreateVideoGame = (props) => {
                 }):<></>}
                 </select><br />
 
-                <p>{arrayPlatforms.length>0? arrayPlatforms.map(g=>(
+                <div>{arrayPlatforms.length>0? arrayPlatforms.map(g=>(
                 <GenreCard
                  name={props.platforms.find(({id})=>id===parseInt(g)).name} 
                  key={g} deleteGenre={deletePlatform} id={g}>
                  </GenreCard>
-                 )):<></>}</p> <br />
+                 )):<></>}</div> <br />
                 {!errorPlatforms ? null : <span className='warning'>{errorPlatforms}</span>}<br />
                 <button className='pagbutton' type="submit">Create</button>
              </form>

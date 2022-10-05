@@ -124,7 +124,7 @@ const initialState = {
                   function deletegame(arra){
                     let index=arra.findIndex((g)=>g.id===action.payload.id)
                     if(index!==-1) arra.splice(index,1)
-                    console.log(arra)
+                    //console.log(arra)
                     return(arra);
                   }
                     

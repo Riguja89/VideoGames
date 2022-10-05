@@ -101,7 +101,7 @@ export const postVideogame = (videogame) => dispatch => {
       .then(r => r.data)
       .then(d =>{ dispatch({ type:POST_VIDEOGAME, payload: d }) 
       if(d[0].name===videogame.name)alert("The video game was created successfully")
-      console.log(d[0].name + videogame.name)
+      //console.log(d[0].name + videogame.name)
     })
       .catch((error) => {
         console.log(error);
