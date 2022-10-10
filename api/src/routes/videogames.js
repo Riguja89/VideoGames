@@ -64,7 +64,7 @@ router.get('/',async (req, res, next)=>{
  
 })
 router.get('/:id',async(req, res, next)=>{
-    const id=req.query.id
+    const id=req.params.id
     let game, game2;
  
     try {
