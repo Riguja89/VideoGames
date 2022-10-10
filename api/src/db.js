@@ -10,7 +10,7 @@ const {
 //const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {
 
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {
+const sequelize = new Sequelize(URL_DATABASE, {
 // postgres://videogames_uun8_user:xBpZZ5vuTM8HXycadPL3fHgsyza8a7xx@dpg-cd24oeaen0hm1tsbg0n0-a.ohio-postgres.render.com/videogames_uun8
 // postgres://videogames_uun8_user:xBpZZ5vuTM8HXycadPL3fHgsyza8a7xx@dpg-cd24oeaen0hm1tsbg0n0-a/videogames_uun8
 logging: false, // set to console.log to see the raw SQL queries
