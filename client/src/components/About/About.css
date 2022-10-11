@@ -1,0 +1,54 @@
+.About{
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    right: 10%;
+    padding: 15px;
+    background-image: url("../../images/fondo-create.jpg");
+   
+    color: aliceblue;
+    text-decoration-color: #dce9f5;
+    justify-content: center;
+    border-radius: 6px;
+    text-align: center;
+}
+.contenido{
+    width: 300px;
+    margin: 0 auto;
+    text-align: justify
+}
+.listyoucando{
+    margin: 0 auto;
+
+}
+
+.linkedin{
+width: 40px;
+height:40px ;
+background-image: url("../../images/linkedin.png");
+background-size: cover;
+margin: 10px;
+}
+
+.git{
+    width: 40px;
+    height:40px ;
+    background-image: url("../../images/github.png");
+    background-size: cover;
+    margin: 10px;
+    }
+
+ .git:hover{
+    width: 46px;
+    height:46px ;
+    margin: 7px;
+ } 
+ .linkedin:hover{
+    width: 46px;
+    height:46px ;
+    margin: 7px;
+ } 
+.linksto{
+    display: flex;
+}
+

@@ -18,6 +18,7 @@ export const SET_STATE_ORDER="SET_STATE_ORDER";
 export const SET_CURRENT_PAGE="SET_CURRENT_PAGE";
 export const CLEAR_VIDEOGAMES="CLEAR_VIDEOGAMES";
 export const DELETE_VIDEOGAME="DELETE_VIDEOGAME";
+
 // Fijarse que la sintaxis de nuestra Action creator es distinta a lo que venimos haciendo. Esto es
 // debido al uso del middleware "thunk", el cual nos permite trabajar con acciones asincrónicas.
 // Necesitamos hacer uso de este middleware ya que nuestras peticiones al back siempre son asincrónicas,
@@ -29,10 +30,14 @@ export const DELETE_VIDEOGAME="DELETE_VIDEOGAME";
 // Usar ruta 'http://localhost:3001/houses' para buscar todas las houses en nuestro back.
 // Esto lo vas a poder hacer utilizando fetch.
 // export const getAllHouses = () => dispatch => {};
+
+const apigameRender="https://api-games.onrender.com" // url para produccion
+//const apigameRender="http://localhost:3001" // intercambiar con el anterior si quieres correr todo en local
+
 export const getAllVideoGames = () => dispatch => {
     //console.log("va a hacer la peticion")
     
-        return axios("http://localhost:3001/api/videogames")
+        return axios(apigameRender+"/api/videogames")
  
         .then(r => r.data)
         .then(d => dispatch({ type:GET_ALL_VIDEOGAMES, payload: d }) )
@@ -52,7 +57,7 @@ export const clearVideogames=()=>dispatch=>{
 export const searchGames = (name) => dispatch => {
   //console.log("va a hacer la peticion")
       
-      return axios("http://localhost:3001/api/videogames?name="+name)
+      return axios(apigameRender+"/api/videogames?name="+name)
 
       .then(r => r.data)
       .then(d => dispatch({ type:SEARCH_GAMES, payload: d }) )
@@ -67,7 +72,7 @@ export const searchGames = (name) => dispatch => {
 export const getGenres = () => dispatch => {
   //console.log("va a hacer la peticion")
   
-      return axios("http://localhost:3001/api/genres")
+      return axios(apigameRender+"/api/genres")
 
       .then(r => r.data)
       .then(d => dispatch({ type:GET_GENRES, payload: d }) )
@@ -82,7 +87,7 @@ export const getGenres = () => dispatch => {
 export const getPlatforms = () => dispatch => {
   //console.log("va a hacer la peticion")
   
-      return axios("http://localhost:3001/api/platforms")
+      return axios(apigameRender+"/api/platforms")
 
       .then(r => r.data)
       .then(d => dispatch({ type:GET_PLATFORMS, payload: d }) )
@@ -96,7 +101,7 @@ export const getPlatforms = () => dispatch => {
 export const postVideogame = (videogame) => dispatch => {
   //console.log("va a hacer la peticion")
   
-      return axios.post("http://localhost:3001/api/videogames",videogame)
+      return axios.post(apigameRender+"/api/videogames",videogame)
 
       .then(r => r.data)
       .then(d =>{ dispatch({ type:POST_VIDEOGAME, payload: d }) 
@@ -115,7 +120,7 @@ export const getVideoGameId = (id) => dispatch => {
   //console.log("va a hacer la peticion")
   
   if(id){
-      return axios(`http://localhost:3001/api/videogames/${id}`)
+      return axios(apigameRender+`/api/videogames/${id}`)
 
       .then(r => r.data)
       .then(d => dispatch({ type:GET_VIDEOGAME_ID, payload: d }) )
@@ -134,7 +139,7 @@ export const deleteVideoGameId = (id) => dispatch => {
   //console.log("va a hacer la peticion")
   
   if(id){
-      return axios.delete(`http://localhost:3001/api/videogames/${id}`)
+      return axios.delete(apigameRender+`/api/videogames/${id}`)
 
       .then(r => r.data)
       .then(d => dispatch({ type:DELETE_VIDEOGAME, payload: {id:id, d:d} }) )
