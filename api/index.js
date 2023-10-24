@@ -23,7 +23,7 @@ const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {
-  server.listen(3001, () => {
+  server.listen(8080, () => { // cambiar a 3001 para correr en local
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });
