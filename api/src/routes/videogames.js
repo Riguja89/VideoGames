@@ -5,6 +5,7 @@ const {Op}=require('sequelize')
 const axios=require ('axios');
 const router = Router();
 const {API_KEY} = process.env;
+
 router.get('/',async (req, res, next)=>{
     let {name}=req.query;
     let videogamesDb=[]
